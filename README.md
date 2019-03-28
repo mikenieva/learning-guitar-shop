@@ -10,7 +10,7 @@
 * [Contenido de referencia](#contenido-de-referencia)
 * [Iteraciones](#iteraciones)
 * [0. Instalación y configuraciones iniciales](#iteraciones)
-  - [Iteración 0.1 - Estructura de Carpetas](#iteraciones)
+  * [Iteración 0.1 - Estructura de Carpetas](#iteraciones)
 * [1. Backend (Middlewares, Models & Routes)](#iteraciones)
 * [2. Frontend (Authentication)](#iteraciones)
 * [3. Frontend (Landing Page + Shop + Admin Page)](#iteraciones)
