@@ -1,14 +1,31 @@
-# Tienda Online de Guitarras
+# Proyecto: Tienda Online de Guitarras
 
-Construir una tienda de comercio electrónico bajo el esquema MERN, 
-en el cual se vinculan 4 tecnologías base:
+## Índice
+
+* [Preámbulo](#preámbulo)
+* [Descripción](#resumen-del-proyecto)
+* [Consideraciones generales](#consideraciones-generales)
+* [Objetivos de aprendizaje](#objetivos-de-aprendizaje)
+* [Parte obligatoria](#parte-obligatoria)
+* [Parte opcional](#parte-opcional-hacker-edition)
+* [Consideraciones técnicas](#consideraciones-técnicas)
+* [Primeros pasos](#primeros-pasos)
+* [Contenido de referencia](#contenido-de-referencia)
+* [Checklist](#checklist)
+
+***
+
+## Resumen del proyecto
+
+Construiremos una tienda de comercio electrónico bajo el esquema MERN, 
+en el cual se vincularán el siguiente conjunto de tecnologías:
 
 - MongoDB
 - Express
 - React (Con Redux)
 - NodeJS
 
-A lo largo del proyecto, se tendrán las iteraciones sobre el README.md y las respuestas junto a las explicaciones
+A lo largo del proyecto, tendrán los diferentes alcances so sobre el README.md y las respuestas junto a las explicaciones
 en el Wiki de este repositorio.
 
 Recuerda que al terminar cada iteración, realiza un "commit" para asegurar tu progreso.
@@ -27,6 +44,10 @@ Recuerda que al terminar cada iteración, realiza un "commit" para asegurar tu p
 # 0. Instalación y configuraciones iniciales
 
 ## Iteración 0.1 - Estructura de Carpetas
+
+
+
+
 ## Iteración 0.2 - Boilerplate. Instalación de dependencias
 
 # 1. Backend (Middlewares, Models & Routes) + Frontend (Authentication)
