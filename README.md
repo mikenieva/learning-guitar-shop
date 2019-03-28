@@ -5,7 +5,6 @@
 - [Preámbulo](#preámbulo)
 - [Resumen del proyecto](#resumen-del-proyecto)
 - [Consideraciones generales](#consideraciones-generales)
-- [Objetivos de aprendizaje](#objetivos-de-aprendizaje)
 - [Consideraciones técnicas](#consideraciones-técnicas)
 - [Descripción de alcances](#alcances)
 
@@ -49,11 +48,9 @@
 
 La pasión de tu vida siempre ha sido la música. 
 
-Has destacado en la industria por tus conocimientos en el mundo de las guitarras y se te reconoce por ayudar entusiastas eligiendo su primer instrumento y a los más veteranos en una más apropiada para sus necesidades. 
+Has destacado en la industria por tus conocimientos en el mundo de las guitarras. Se te reconoce por ayudar entusiastas a elegir su primer instrumento y a los más veteranos en una más apropiada para sus necesidades. 
 
-Tu trabajo principal es realizar consultorías a distribuidoras de instrumentos, mejorando su flujo de ventas en mayoreo y menudeo en todo el país.
-
-Lo sabes todo sobre guitarras.
+Además, tu trabajo principal es realizar consultorías a distribuidoras de instrumentos, mejorando su flujo de ventas en todo el país.
 
 Por ello, después de varios años, has juntado suficiente dinero y confianza para aprovechar toda tu experiencia e invertir en crear un negocio propio.
 
@@ -77,10 +74,6 @@ El proyecto estará dividido en alcances. Su intención es brindarte un camino p
 
 Recuerda que al terminar cada alcance, realiza un "commit" para asegurar tu progreso dentro de tu repositorio.
 
-## Consideraciones generales
-
-## Consideraciones técnicas
-
 # Herramientas · Aplicaciones a utilizar 
 
 * NodeJS
@@ -92,9 +85,11 @@ Recuerda que al terminar cada alcance, realiza un "commit" para asegurar tu prog
 * GitHub Repo (Projects & Issues)
 
 
-# 0. Instalación y configuraciones iniciales
+## Consideraciones técnicas
 
-## Alcance 0.1 - Estructura de Carpetas
+### 0. Instalación y configuraciones iniciales
+
+### Alcance 0.1 - Estructura de Carpetas
 
 - Inicializa tu proyecto con `npm init` y crea el archivo `package.json`
 - Crea una carpeta `client` y dentro coloca un proyecto de React con `create-react-app`
