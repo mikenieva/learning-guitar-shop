@@ -45,6 +45,37 @@ Recuerda que al terminar cada iteración, realiza un "commit" para asegurar tu p
 
 ## Iteración 0.1 - Estructura de Carpetas
 
+- Inicializa tu proyecto con `npm init` y crea el archivo `package.json`
+- Crea una carpeta `client` y dentro coloca un proyecto de React con `create-react-app`
+- Crea una carpeta `server` y dentro coloca un archivo `server.js`. Dentro levantaremos nuestro servidor para el ambiente "Backend"
+- Crea un archivo .gitignore y coloca dentro los archivos que deberemos ignorar. Te recomendamos colocar:
+
+#### `./.gitignore`
+```
+/node_modules
+/build
+/client/node_modules
+
+.DS_Store
+.env
+
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+```
+
+- Al finalizar la iteración, deberías tener esta estructura de carpetas:
+
+```
+|--client
+|--server
+|   |--server.js
+|  
+|--.gitignore
+|--package.json
+```
+
+
 
 
 
