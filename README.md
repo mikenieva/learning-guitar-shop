@@ -7,13 +7,40 @@
 * [Consideraciones generales](#consideraciones-generales)
 * [Objetivos de aprendizaje](#objetivos-de-aprendizaje)
 * [Consideraciones técnicas](#consideraciones-técnicas)
-* [Contenido de referencia](#contenido-de-referencia)
-* [Iteraciones](#iteraciones)
-* [0. Instalación y configuraciones iniciales](#iteraciones)
-  * [Iteración 0.1 - Estructura de Carpetas](#iteraciones)
+* [Descripción de alcances](#alcances)
+
+* [0. Instalación y configuraciones iniciales](#alcances-0)
+  * [Alcance 0.1 - Estructura de Carpetas](#alcances-01)
+  * [Alcance 0.2 - Estructura de Carpetas](#alcances-02)
+  * [Alcance 0.3 - Estructura de Carpetas](#alcances-03)
+  
 * [1. Backend (Middlewares, Models & Routes)](#iteraciones)
+  * [Alcance 1.1 - BACKEND · Creando el servidor, el archivo .env y "Middlewares"]()
+  * [Alcance 1.2 - BACKEND · Creando el modelo "User"]()
+  * [Alcance 1.3 - BACKEND · Registrando "users"]()
+  * [Alcance 1.4 - BACKEND · Encriptando "passwords"]()
+  * [Alcance 1.5 - BACKEND · Iniciando sesión con "users" y creando "tokens"]()
+  * [Alcance 1.6 - BACKEND · Creando una ruta de Autenticación]()
+  * [Alcance 1.7 - BACKEND · Cerrando sesión de "users"]()
+  * [Alcance 1.8 - BACKEND · Creando el modelo "Brand" y sus rutas]()
+  * [Alcance 1.9 - BACKEND · Creando el modelo "Woods" y sus rutas]()
+  * [Alcance 1.10 - BACKEND · Agregando productos]()
+  * [Alcance 1.11 - BACKEND · Obteniendo los productos por ID]()
+  * [Alcance 1.12 - BACKEND · Obteniendo los productos por orden]()
+  
 * [2. Frontend (Authentication)](#iteraciones)
+
+  * [Alcance 2.1 - FRONTEND · Configuración, dependencias y scripts]()
+  * [Alcance 2.2 - FRONTEND · Creando el Header y el Footer]()
+  * [Alcance 2.3 - FRONTEND · Configurando Redux]()
+  * [Alcance 2.4 - FRONTEND · Agregando componente de "Registro" e "Inicio de Sesión"]()
+  * [Alcance 2.5 - FRONTEND · Desarrollando el inicio de sesión]()
+  * [Alcance 2.6 - FRONTEND · Desarrollando el registro]()
+  * [Alcance 2.7 - FRONTEND · Creando el "dashboard"]()
+  * [Alcance 2.8 - FRONTEND · Prevención de rutas]()
+
 * [3. Frontend (Landing Page + Shop + Admin Page)](#iteraciones)
+
 * [4. Frontend (Checkout + Payment Process)](#iteraciones)
 
 ***
@@ -50,25 +77,22 @@ Recuerda que al terminar cada alcance, realiza un "commit" para asegurar tu prog
 
 ## Consideraciones generales
 
-
-
-
 ## Consideraciones técnicas
 
 # Herramientas · Aplicaciones a utilizar 
 
-- NodeJS
-- Postman
-- MongoDB
-- MongoDB Compass
-- VS Code
-- GIT
-- GitHub Repo (Projects & Issues)
+* NodeJS
+* [Postman](https://www.getpostman.com/)
+* MongoDB
+* MongoDB Compass
+* VS Code
+* GIT
+* GitHub Repo (Projects & Issues)
 
 
 # 0. Instalación y configuraciones iniciales
 
-## Iteración 0.1 - Estructura de Carpetas
+## Alcance 0.1 - Estructura de Carpetas
 
 - Inicializa tu proyecto con `npm init` y crea el archivo `package.json`
 - Crea una carpeta `client` y dentro coloca un proyecto de React con `create-react-app`
@@ -101,43 +125,17 @@ yarn-error.log*
 ```
 
 
+## Alcance 0.2 - Boilerplate. Instalación de dependencias
 
-
-
-## Iteración 0.2 - Boilerplate. Instalación de dependencias
-
-# 1. Backend (Middlewares, Models & Routes) + Frontend (Authentication)
+# 1. BACKEND (Middlewares, Models & Routes)
 
 En las siguientes iteraciones, trabajaremos en la carpeta "server".
 
-## Iteración 1.1 - BACKEND · Creando el servidor, el archivo .env y "Middlewares"
-## Iteración 1.2 - BACKEND · Creando el modelo "User"
-## Iteración 1.3 - BACKEND · Registrando "users"
-## Iteración 1.4 - BACKEND · Encriptando "passwords"
-## Iteración 1.5 - BACKEND · Iniciando sesión con "users" y creando "tokens"
-## Iteración 1.6 - BACKEND · Creando una ruta de Autenticación
-## Iteración 1.7 - BACKEND · Cerrando sesión de "users"
-## Iteración 1.8 - BACKEND · Creando el modelo "Brand" y sus rutas
-## Iteración 1.9 - BACKEND · Creando el modelo "Woods" y sus rutas
-## Iteración 1.10 - BACKEND · Agregando productos
-## Iteración 1.11 - BACKEND · Obteniendo los productos por ID
-## Iteración 1.12 - BACKEND · Obteniendo los productos por orden
-## Iteración 1.13 - FRONTEND · Revisando configuración, dependencias y scripts (Bootstrap y Google Fonts)
-## Iteración 1.14 - FRONTEND · Creando el Header y el Footer
-## Iteración 1.15 - FRONTEND · Configurando Redux
-## Iteración 1.16 - FRONTEND · Agregando componente de "Registro" e "Inicio de Sesión"
-## Iteración 1.17 - FRONTEND · Desarrollando el inicio de sesión
-## Iteración 1.18 - FRONTEND · Desarrollando el registro
-## Iteración 1.18 - FRONTEND · Creando el "dashboard"
-## Iteración 1.19 - FRONTEND · Prevención de rutas (Autorización)
+# 2. FRONTEND (Authentication)
 
-# 2. Frontend (Landing Page + Shop + Admin Page)
+# 2. FRONTEND (Landing Page + Shop + Admin Page)
 
-## Iteración 2.1
-
-# 3. Sprint: Frontend (Checkout + Payment Process)
-
-## Iteración 3.1
+# 3. FRONTEND (Checkout + Payment Process)
 
 
 
