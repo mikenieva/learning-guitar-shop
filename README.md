@@ -4,15 +4,14 @@
 
 - [Preámbulo](#preámbulo)
 - [Resumen del proyecto](#resumen-del-proyecto)
-* [Consideraciones generales](#consideraciones-generales)
-* [Objetivos de aprendizaje](#objetivos-de-aprendizaje)
-* [Consideraciones técnicas](#consideraciones-técnicas)
-* [Descripción de alcances](#alcances)
-
-* [0. Instalación y configuraciones iniciales](#alcances-0)
-  * [Alcance 0.1 - Estructura de Carpetas](#alcances-01)
-  * [Alcance 0.2 - Estructura de Carpetas](#alcances-02)
-  * [Alcance 0.3 - Estructura de Carpetas](#alcances-03)
+- [Consideraciones generales](#consideraciones-generales)
+- [Objetivos de aprendizaje](#objetivos-de-aprendizaje)
+- [Consideraciones técnicas](#consideraciones-técnicas)
+- [Descripción de alcances](#alcances)
+- [0. Instalación y configuraciones iniciales](#alcances-0)
+  - [Alcance 0.1 - Estructura de Carpetas](#alcances-01)
+  - [Alcance 0.2 - Estructura de Carpetas](#alcances-02)
+  - [Alcance 0.3 - Estructura de Carpetas](#alcances-03)
   
 * [1. Backend (Middlewares, Models & Routes)](#iteraciones)
   * [Alcance 1.1 - BACKEND · Creando el servidor, el archivo .env y "Middlewares"]()
