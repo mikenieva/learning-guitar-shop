@@ -6,12 +6,15 @@
 * [Resumen del proyecto](#resumen-del-proyecto)
 * [Consideraciones generales](#consideraciones-generales)
 * [Objetivos de aprendizaje](#objetivos-de-aprendizaje)
-* [Parte obligatoria](#parte-obligatoria)
-* [Parte opcional](#parte-opcional-hacker-edition)
 * [Consideraciones técnicas](#consideraciones-técnicas)
-* [Primeros pasos](#primeros-pasos)
 * [Contenido de referencia](#contenido-de-referencia)
-* [Checklist](#checklist)
+* [Iteraciones](#iteraciones)
+* [0. Instalación y configuraciones iniciales](#iteraciones)
+  - [Iteración 0.1 - Estructura de Carpetas](#iteraciones)
+* [1. Backend (Middlewares, Models & Routes)](#iteraciones)
+* [2. Frontend (Authentication)](#iteraciones)
+* [3. Frontend (Landing Page + Shop + Admin Page)](#iteraciones)
+* [4. Frontend (Checkout + Payment Process)](#iteraciones)
 
 ***
 
@@ -34,21 +37,25 @@ Trazas una estrategia y planeas terminar el proyecto en 30 días.
 
 ## Resumen del proyecto
 
-Construiremos una tienda de comercio electrónico bajo el esquema MERN, en el cual se vincularán el siguiente conjunto de tecnologías:
+Construirás una tienda de comercio electrónico bajo el esquema MERN, en el cual se vincularán el siguiente conjunto de tecnologías:
 
 - MongoDB
 - Express
-- React
+- React + Redux
 - NodeJS
 
-A lo largo del proyecto, tendrán los diferentes alcances so sobre el README.md y las respuestas junto a las explicaciones
-en el Wiki de este repositorio.
+El proyecto estará dividido en alcances. Su intención es brindarte un camino para que lo puedas ir resolviendo paso a paso.
 
-Recuerda que al terminar cada iteración, realiza un "commit" para asegurar tu progreso.
+Recuerda que al terminar cada alcance, realiza un "commit" para asegurar tu progreso dentro de tu repositorio.
 
 ## Consideraciones generales
 
-# Herramientas · Servicios
+
+
+
+## Consideraciones técnicas
+
+# Herramientas · Aplicaciones a utilizar 
 
 - NodeJS
 - Postman
