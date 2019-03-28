@@ -4,8 +4,8 @@
 
 - [Preámbulo](#preámbulo)
 - [Resumen del proyecto](#resumen-del-proyecto)
-- [Consideraciones generales](#resumen-del-proyecto)
-- [Consideraciones técnicas](#resumen-del-proyecto)
+- [Consideraciones generales](#consideraciones-generales)
+- [Consideraciones técnicas](#consideraciones-tecnicas)
 - [Descripción de alcances](#resumen-del-proyecto)
 
 * [0. Instalación y configuraciones iniciales](#resumen-del-proyecto)
@@ -62,7 +62,6 @@ Con los conocimientos del Bootcamp de programación que terminaste hace un par d
 
 Trazas una estrategia y planeas terminar el proyecto en 30 días.
 
-
 ## Resumen del proyecto
 
 Construirás una tienda de comercio electrónico bajo el esquema MERN, en el cual se vincularán el siguiente conjunto de tecnologías:
@@ -76,7 +75,7 @@ El proyecto estará dividido en alcances. Su intención es brindarte un camino p
 
 Recuerda que al terminar cada alcance, realiza un "commit" para asegurar tu progreso dentro de tu repositorio.
 
-# Herramientas · Aplicaciones a utilizar 
+## Consideracioness técnicas
 
 * NodeJS
 * [Postman](https://www.getpostman.com/)
