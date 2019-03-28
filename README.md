@@ -4,11 +4,11 @@
 
 - [Preámbulo](#preámbulo)
 - [Resumen del proyecto](#resumen-del-proyecto)
-- [Consideraciones generales](#consideraciones-generales)
-- [Consideraciones técnicas](#consideraciones-técnicas)
-- [Descripción de alcances](#alcances)
+- [Consideraciones generales](#resumen-del-proyecto)
+- [Consideraciones técnicas](#resumen-del-proyecto)
+- [Descripción de alcances](#resumen-del-proyecto)
 
-* [0. Instalación y configuraciones iniciales](#alcances-0)
+* [0. Instalación y configuraciones iniciales](#resumen-del-proyecto)
   - [Alcance 0.1 - Estructura de Carpetas](#alcances-01)
   - [Alcance 0.2 - Estructura de Carpetas](#alcances-02)
   - [Alcance 0.3 - Estructura de Carpetas](#alcances-03)
@@ -45,6 +45,8 @@
 ***
 
 ## Preámbulo
+
+![Imgur](https://i.imgur.com/XHpENHF.jpg)
 
 La pasión de tu vida siempre ha sido la música. 
 
