@@ -8,7 +8,8 @@
 - [Objetivos de aprendizaje](#objetivos-de-aprendizaje)
 - [Consideraciones técnicas](#consideraciones-técnicas)
 - [Descripción de alcances](#alcances)
-- [0. Instalación y configuraciones iniciales](#alcances-0)
+
+* [0. Instalación y configuraciones iniciales](#alcances-0)
   - [Alcance 0.1 - Estructura de Carpetas](#alcances-01)
   - [Alcance 0.2 - Estructura de Carpetas](#alcances-02)
   - [Alcance 0.3 - Estructura de Carpetas](#alcances-03)
