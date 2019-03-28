@@ -2,8 +2,8 @@
 
 ## Índice
 
-* [Preámbulo](#preámbulo)
-* [Resumen del proyecto](#resumen-del-proyecto)
+- [Preámbulo](#preámbulo)
+- [Resumen del proyecto](#resumen-del-proyecto)
 * [Consideraciones generales](#consideraciones-generales)
 * [Objetivos de aprendizaje](#objetivos-de-aprendizaje)
 * [Consideraciones técnicas](#consideraciones-técnicas)
