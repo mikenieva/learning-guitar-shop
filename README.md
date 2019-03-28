@@ -3,7 +3,7 @@
 ## Índice
 
 * [Preámbulo](#preámbulo)
-* [Descripción](#resumen-del-proyecto)
+* [Resumen del proyecto](#resumen-del-proyecto)
 * [Consideraciones generales](#consideraciones-generales)
 * [Objetivos de aprendizaje](#objetivos-de-aprendizaje)
 * [Parte obligatoria](#parte-obligatoria)
@@ -15,20 +15,38 @@
 
 ***
 
+## Preámbulo
+
+La pasión de tu vida siempre ha sido la música. 
+
+Has destacado en la industria por tus conocimientos musicales y se te reconoce por tu alta experiencia en ayudar entusiastas a elegir su primera guitarra y a los más veteranos en una más apropiada para sus necesidades. 
+
+Has realizado consultorías a distribuidoras de instrumentos, mejorando su flujo de ventas en mayoreo y menudeo en todo el país.
+
+Después de varios años, por fin has juntado suficiente dinero y confianza para aprovechar toda tu experiencia e invertir en un negocio propio.
+
+Tomas la decisión de crear una tienda electrónica y vender guitarras con un sistema más automatizado, bajo tu propia marca. 
+
+Con los conocimientos del Bootcamp de programación que terminaste y tomaste hace un par de meses, afirmas que cuentas con los conocimientos suficientes para desarrollarlo.
+
+Trazas una estrategia y planeas terminar el proyecto en 30 días.
+
+
 ## Resumen del proyecto
 
-Construiremos una tienda de comercio electrónico bajo el esquema MERN, 
-en el cual se vincularán el siguiente conjunto de tecnologías:
+Construiremos una tienda de comercio electrónico bajo el esquema MERN, en el cual se vincularán el siguiente conjunto de tecnologías:
 
 - MongoDB
 - Express
-- React (Con Redux)
+- React
 - NodeJS
 
 A lo largo del proyecto, tendrán los diferentes alcances so sobre el README.md y las respuestas junto a las explicaciones
 en el Wiki de este repositorio.
 
 Recuerda que al terminar cada iteración, realiza un "commit" para asegurar tu progreso.
+
+## Consideraciones generales
 
 # Herramientas · Servicios
 
