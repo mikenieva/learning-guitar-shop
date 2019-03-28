@@ -49,15 +49,17 @@
 
 La pasión de tu vida siempre ha sido la música. 
 
-Has destacado en la industria por tus conocimientos musicales y se te reconoce por tu alta experiencia en ayudar entusiastas a elegir su primera guitarra y a los más veteranos en una más apropiada para sus necesidades. 
+Has destacado en la industria por tus conocimientos en el mundo de las guitarras y se te reconoce por ayudar entusiastas eligiendo su primer instrumento y a los más veteranos en una más apropiada para sus necesidades. 
 
-Has realizado consultorías a distribuidoras de instrumentos, mejorando su flujo de ventas en mayoreo y menudeo en todo el país.
+Tu trabajo principal es realizar consultorías a distribuidoras de instrumentos, mejorando su flujo de ventas en mayoreo y menudeo en todo el país.
 
-Después de varios años, por fin has juntado suficiente dinero y confianza para aprovechar toda tu experiencia e invertir en un negocio propio.
+Lo sabes todo sobre guitarras.
 
-Tomas la decisión de crear una tienda electrónica y vender guitarras con un sistema más automatizado, bajo tu propia marca. 
+Por ello, después de varios años, has juntado suficiente dinero y confianza para aprovechar toda tu experiencia e invertir en crear un negocio propio.
 
-Con los conocimientos del Bootcamp de programación que terminaste y tomaste hace un par de meses, afirmas que cuentas con los conocimientos suficientes para desarrollarlo.
+Tomas la decisión de programar una tienda de comercio electrónico y vender guitarras con un sistema más automatizado. 
+
+Con los conocimientos del Bootcamp de programación que terminaste hace un par de meses, afirmas que cuentas con los conocimientos suficientes para ejecutarlo.
 
 Trazas una estrategia y planeas terminar el proyecto en 30 días.
 
