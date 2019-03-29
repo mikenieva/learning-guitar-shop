@@ -85,9 +85,12 @@ Recuerda que al terminar cada alcance, deberás realizar un "commit" para asegur
 * ["GitHub Reposity: Projects & Issues"](https://help.github.com/en/articles/about-project-boards)
 
 
-## 0. Instalación y configuraciones iniciales
+## Alcances 0 · Instalación y configuraciones iniciales
 
-## Alcance 0.1 - Estructura de Carpetas
+En este módulo, trabajaremos nuestra estructura de carpetas, revisaremos las dependencias que nuestro BACKEND necesita y finalmente haremos la configuración mínima para levantar el servidor en el puerto 3002.
+
+
+## 0.1 - Estructura de Carpetas
 
 - Inicializa tu proyecto con `npm init` y crea el archivo `package.json`
 - Crea una carpeta `client` y dentro coloca un proyecto de React con `create-react-app`
@@ -119,7 +122,7 @@ yarn-error.log*
 |--package.json
 ```
 
-## Alcance 0.2 - Instalación de dependencias BACKEND
+## 0.2 - Instalación de dependencias BACKEND
 
 - Instala las dependencias para el proyecto:
 
@@ -164,9 +167,30 @@ Verifica que estén colocadas en tu `package.json`, dentro de tus dependencias.
   
 ```
 
-## 1. BACKEND (Middlewares, Models & Routes)
+***
 
-En las siguientes iteraciones, trabajaremos en la carpeta "server".
+## Alcances 1 · BACKEND (Middlewares, Models & Routes)
+
+Durante todo este alcance, trabajaremos dentro de la carpeta "server". Crearemos toda la estructura de nuestro Backend, así como la conexión con nuestra base de datos con MongoDB.
+
+## 1.1 - BACKEND · Creando el servidor, el archivo .env y "Middlewares"
+
+## 1.2 - BACKEND · Creando el modelo "User"
+
+## 1.3 - BACKEND · Registrando "users"
+
+## 1.4 - BACKEND · Encriptando "passwords"
+
+## 1.5 - BACKEND · Iniciando sesión con "users" y creando "tokens"
+
+## 1.6 - BACKEND · Creando una ruta de Autenticación
+
+## 1.7 - BACKEND · Cerrando sesión de "users"
+
+
+
+***
+
 
 ## 2. FRONTEND (Authentication)
 
