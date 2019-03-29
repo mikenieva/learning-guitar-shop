@@ -4,14 +4,12 @@
 
 - [Preámbulo](#preámbulo)
 - [Resumen del proyecto](#resumen-del-proyecto)
-- [Consideraciones generales](#consideraciones-generales)
 - [Consideraciones técnicas](#consideraciones-tecnicas)
 - [Descripción de alcances](#resumen-del-proyecto)
 
 * [0. Instalación y configuraciones iniciales](#resumen-del-proyecto)
   - [Alcance 0.1 - Estructura de Carpetas](#alcances-01)
-  - [Alcance 0.2 - Estructura de Carpetas](#alcances-02)
-  - [Alcance 0.3 - Estructura de Carpetas](#alcances-03)
+  - [Alcance 0.2 - Instalación de dependencias](#alcances-02)
   
 * [1. Backend (Middlewares, Models & Routes)](#iteraciones)
   * [Alcance 1.1 - BACKEND · Creando el servidor, el archivo .env y "Middlewares"]()
@@ -26,7 +24,7 @@
   * [Alcance 1.10 - BACKEND · Agregando productos]()
   * [Alcance 1.11 - BACKEND · Obteniendo los productos por ID]()
   * [Alcance 1.12 - BACKEND · Obteniendo los productos por orden]()
-  
+
 * [2. Frontend (Authentication)](#iteraciones)
 
   * [Alcance 2.1 - FRONTEND · Configuración, dependencias y scripts]()
@@ -73,24 +71,25 @@ Construirás una tienda de comercio electrónico bajo el esquema MERN, en el cua
 
 El proyecto estará dividido en alcances. Su intención es brindarte un camino para que lo puedas ir resolviendo paso a paso.
 
-Recuerda que al terminar cada alcance, realiza un "commit" para asegurar tu progreso dentro de tu repositorio.
-
-## Consideracioness técnicas
-
-* NodeJS
-* [Postman](https://www.getpostman.com/)
-* MongoDB
-* MongoDB Compass
-* VS Code
-* GIT
-* GitHub Repo (Projects & Issues)
-
+Recuerda que al terminar cada alcance, deberás realizar un "commit" para asegurar tu progreso dentro de tu repositorio.
+ 
 
 ## Consideraciones técnicas
 
-### 0. Instalación y configuraciones iniciales
+* [NodeJS](https://nodejs.org)
+* [Postman](https://www.getpostman.com/)
+* [MongoDB](https://docs.mongodb.com/manual/administration/install-community/)
+* [MongoDB Compass](https://www.mongodb.com/products/compass)
+* [Visual Studio Code](https://code.visualstudio.com/)
+* [Git](https://git-scm.com/downloads)
+* Activar en GitHub Repo el área de ["Projects & Issues"](https://help.github.com/en/articles/about-project-boards)
 
-### Alcance 0.1 - Estructura de Carpetas
+
+
+
+## 0. Instalación y configuraciones iniciales
+
+## Alcance 0.1 - Estructura de Carpetas
 
 - Inicializa tu proyecto con `npm init` y crea el archivo `package.json`
 - Crea una carpeta `client` y dentro coloca un proyecto de React con `create-react-app`
@@ -122,18 +121,62 @@ yarn-error.log*
 |--package.json
 ```
 
+## Alcance 0.2 - Instalación de dependencias BACKEND
 
-## Alcance 0.2 - Boilerplate. Instalación de dependencias
+- Instala las dependencias para el proyecto:
 
-# 1. BACKEND (Middlewares, Models & Routes)
+`Servidor`
+- nodemon - Herramienta para monitorear cambios en una aplicación y reiniciarla cada vez que suceda uno.
+- bcrypt - Encriptación de contraseñas.
+- cloudinary - Subir imágenes a plataforma de [Cloudinary](https://cloudinary.com/).
+- concurrently - Levanta varias sesiones de Node.js en un sólo comando.
+- cookie-parser - Mantener la sesión del usuario sobre el navegador (lado del cliente).
+- dotenv - Archivo que mantiene tus datos sensibles, almacenados en `.env`, en la raiz de tu proyecto.
+- express - Framework Web para crear nuestro Backend y sus derivados.
+- express-formidable - Middleware de Node.js que permite convertir datos de formularios, incluyendo subida de archivos.
+- jsonwebtoken -Implementación de Json Web Tokens (una manera de transmitir de forma segura información entre partes como un objeto JSON)
+- moment - Convierte, valida y muestra fechas y tiempos en Javascript
+- mongoose - Herramienta para modelar objetos con MongoDB
+- [multer](https://www.npmjs.com/package/multer) - Middleware que permite la transmisión de formatos de datos del tipo imagen o archivos.
+
+Verifica que estén colocadas en tu `package.json`, dentro de tus dependencias.
+
+- Crea el script "server" dentro de tu package.json que corra `nodemon` sobre tu archivo `server.js`.
+
+#### `./package.json`
+```javascript
+...
+"scripts":{
+    "server": "nodemon server/server.js"
+  }
+...
+```
+
+- Levanta el servidor
+
+#### `./server/server.js`
+```javascript
+  const express = require('express')
+  const app = express()
+  const port = process.env.PORT || 3002
+  
+  app.listen(port, () => {
+    console.log(`Servidor corriendo en el puerto ${port}`)
+  }
+  
+```
+
+
+
+## 1. BACKEND (Middlewares, Models & Routes)
 
 En las siguientes iteraciones, trabajaremos en la carpeta "server".
 
-# 2. FRONTEND (Authentication)
+## 2. FRONTEND (Authentication)
 
-# 2. FRONTEND (Landing Page + Shop + Admin Page)
+## 2. FRONTEND (Landing Page + Shop + Admin Page)
 
-# 3. FRONTEND (Checkout + Payment Process)
+## 3. FRONTEND (Checkout + Payment Process)
 
 
 
