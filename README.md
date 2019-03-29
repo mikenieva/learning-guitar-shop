@@ -82,9 +82,7 @@ Recuerda que al terminar cada alcance, deberás realizar un "commit" para asegur
 * [MongoDB Compass](https://www.mongodb.com/products/compass)
 * [Visual Studio Code](https://code.visualstudio.com/)
 * [Git](https://git-scm.com/downloads)
-* Activar en GitHub Repo el área de ["Projects & Issues"](https://help.github.com/en/articles/about-project-boards)
-
-
+* ["GitHub Reposity: Projects & Issues"](https://help.github.com/en/articles/about-project-boards)
 
 
 ## 0. Instalación y configuraciones iniciales
