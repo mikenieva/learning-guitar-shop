@@ -174,7 +174,72 @@ Verifica que estén colocadas en tu `package.json`, dentro de tus dependencias.
 
 Durante todo este alcance, trabajaremos dentro de la carpeta "server". Crearemos toda la estructura de nuestro Backend, así como la conexión con nuestra base de datos con MongoDB.
 
-## 1.1 - BACKEND · Creando el servidor, el archivo .env y "Middlewares"
+## 1.1 - BACKEND · Configurando el servidor, el archivo .env y "Middlewares"
+
+- Crea un archivo .env en la raiz del proyecto y dentro agrega la línea:
+
+```javascript
+DATABASE=mongodb://localhost:27017/tiendaguitarras
+```
+
+- Para poder utilizar .env, debes de agregar esta línea en el archivo de `server.js`:
+
+```javascript
+...
+require('dotenv').config()
+```
+
+- Agrega las dependencias `cookie-parser` y `mongoose` al servidor. Recuerda asignarlas a una variable `const`.
+
+- Conéctate a tu base de datos de MongoDB a través de mongoose, bajo el nombre de "tiendaguitarras" y utilizando la variable de `env` como la dirección de conexión a la base de datos.
+
+```javascript
+...
+mongoose.connect(process.env.DATABASE)
+```
+
+- Utiliza un middleware para convertir los datos que recibamos del cliente en Strings, arreglos o en JSON.
+
+```javascript
+...
+app.use(express.urlencoded({extended: true}))
+app.use(express.json())
+```
+
+- Utiliza un middleware para la inyección de cookies en la petición de datos desde el cliente.
+
+```javascript
+...
+app.use(cookieParser())
+```
+
+Tu código final en este alcance debería ser:
+
+```javascript
+const express = require('express')
+const cookieParser = require('cookie-parser')
+
+const app = express()
+const mongoose = require('mongoose')
+
+require('dotenv').config()
+
+mongoose.connect(process.env.DATABASE)
+
+app.use(express.urlencoded({extended: true}))
+app.use(express.json())
+app.use(cookieParser())
+
+const port = process.env.PORT || 3002
+
+app.listen(port, () => {
+  console.log(`Servidor corriendo en puerto ${port}`)
+})
+
+```
+
+
+
 
 ## 1.2 - BACKEND · Creando el modelo "User"
 
