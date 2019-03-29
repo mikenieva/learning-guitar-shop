@@ -123,7 +123,7 @@ yarn-error.log*
 
 - Instala las dependencias para el proyecto:
 
-`Servidor`
+#### `Servidor`
 - nodemon - Herramienta para monitorear cambios en una aplicación y reiniciarla cada vez que suceda uno.
 - bcrypt - Encriptación de contraseñas.
 - cloudinary - Subir imágenes a plataforma de [Cloudinary](https://cloudinary.com/).
@@ -150,7 +150,7 @@ Verifica que estén colocadas en tu `package.json`, dentro de tus dependencias.
 ...
 ```
 
-- Levanta el servidor
+- Levanta el servidor en el puerto 3002
 
 #### `./server/server.js`
 ```javascript
@@ -163,8 +163,6 @@ Verifica que estén colocadas en tu `package.json`, dentro de tus dependencias.
   }
   
 ```
-
-
 
 ## 1. BACKEND (Middlewares, Models & Routes)
 
