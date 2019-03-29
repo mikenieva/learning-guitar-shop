@@ -84,6 +84,7 @@ Recuerda que al terminar cada alcance, deberás realizar un "commit" para asegur
 * [Git](https://git-scm.com/downloads)
 * ["GitHub Reposity: Projects & Issues"](https://help.github.com/en/articles/about-project-boards)
 
+***
 
 ## Alcances 0 · Instalación y configuraciones iniciales
 
