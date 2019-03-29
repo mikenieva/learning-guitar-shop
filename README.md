@@ -243,6 +243,22 @@ app.listen(port, () => {
 
 ## 1.2 - BACKEND · Creando el modelo "User"
 
+- Crea la ruta "https://localhost:3002/api/users" bajo el método POST. Por ahora, que sólo devuelva un statuso 200.
+
+- Crea un modelo "User" que contenga:
+
+  - email (String)
+  - password (String)
+  - nombre (String)
+  - apellido (String)
+  - carrito (array)
+  - historial (Array)
+  - rol (Number)
+  - token (String)
+
+- Impórtalo en tu archivo de `server.js`
+
+
 ## 1.3 - BACKEND · Registrando "users"
 
 ## 1.4 - BACKEND · Encriptando "passwords"
