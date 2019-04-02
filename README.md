@@ -342,10 +342,10 @@ app.post(‘/api/users/register’, (req, res) => {
 
 ```javascript
 {
-    “email”: “mikeœgmail.com”,
-    “password”: “password123”,
-    “name”: “Mike”,
-    “lastname”: “Nieva"
+    "email": "mikeœgmail.com",
+    "password": "password123",
+    "name": "Mike",
+    "lastname": "Nieva"
 }
 ```
 
