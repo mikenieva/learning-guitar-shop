@@ -487,7 +487,7 @@ app.post(‘/api/users/login’, (req, res) => {
 - Ahora, ¿cómo comparamos los passwords?, regresamos a models/user.js
 
 
-*`models/user.js`*
+**`./server/models/user.js`**
 
 ```javascript
 …
@@ -502,8 +502,9 @@ userSchema.methods.comparePassword = function(candidatePassword, cb){
 - Y listo, con esto tenemos armada la función para que podamos verificar si los passwords matchean.
 - Ahora bien, si matchean, lo que debe pasar es generar un token de identificación.
 
-- Vamos a invocar una función llamada user.generateToken
+- Vamos a invocar una función llamada `user.generateToken
 
+**`./server/server.js`**
 
 ```javascript
 …
@@ -528,7 +529,7 @@ app.post(‘/api/users/login’, (req, res) => {
 
 - Y luego, vamos a declararla en nuestros models/user.js
 
-*`./server/models/user.js`*
+**`./server/models/user.js`**
 
 ```javascript
 // IMPORTACIONES
@@ -545,21 +546,24 @@ userSchema.methods.generateToken = function(){
     var user = this
     var token = jwt.sign()
     
-    // user.id + password (the password of environment, the server only know)
+    // Token = user.id + password (el password del ambiente. Sólo el servidor lo sabrá)
 }
 ```
 
 - Vamos a .env y vamos a crear el password para los tokens
 
-.env
-
 **`./.env`**
+
 ```javascript
 DATABASE=…
 SECRET=SUPERSECRETPASSWORD123
+```
 
 - Regresamos a nuestro models/user.js
-models/user.js
+
+**`./server/models/user.js`**
+
+```javascript
 // IMPORTACIONES
 const jwt = require(‘jsonwebtoken’)
 …
@@ -587,6 +591,8 @@ userSchema.methods.generateToken = function(cb){
 ```
 
 - Listo. Ahora, regresamos a nuestro server.js
+
+**`./server/server.js`**
 
 ```javascript
 …
@@ -636,7 +642,7 @@ app.post(‘/api/users/login’, (req, res) => {
 
 - Lo que vamos a hacer es crear esta verificación constante. No importa que URL visitas, siempre revisaremos si tiene la cookie o no.
 
-./server.js
+**`./server/server.js`**
 
 ```javascript
 app.get(‘/api/users/auth’, (req, res) => {
@@ -645,7 +651,10 @@ app.get(‘/api/users/auth’, (req, res) => {
 ```
 
 Ahora, vamos a crear un middleware para hacer la revisión.
+
 - Creamos una carpeta llamada middleware y dentro crearemos un archivo llamado auth.js
+
+**`./server/middleware/auth.js`**
 
 ```javascript
 const { User } = require(‘./../models/user’)
@@ -655,7 +664,9 @@ let auth = (req, res, next) => {
 module.exports = { auth }
 ```
 
-- Regresamos a server.js. Para preparar el auth
+- Regresamos a server.js. Para preparar el auth.
+
+**`./server/server.js`**
 
 ```javascript
 // 2. MIDDLEWARES
@@ -670,6 +681,7 @@ app.get(‘/api/users/auth’, auth, (req, res) => {
 
 - Volvemos a middlewares/auth. Preparamos para buscar por token la función auth.
 
+**`./server/middleware/auth.js`**
 ```javascript
 
 const { User } = require(‘./../models/user’)
@@ -687,6 +699,7 @@ module.exports = { auth }
 
 - Vamos al models/user.js para crear la función findByToken (porque no existe)
 
+**`./server/models/user.js`**
 
 ```javascript
 …
@@ -708,6 +721,8 @@ const User = mongoose.model...
 
 
 - Regresamos a ./middlewares/auth
+
+**`./server/server.js`**
 
 ```javascript
 
@@ -732,6 +747,8 @@ module.exports = { auth }
 ```
 
 Una vez que completamos y damos next( ), avanzamos al server.js. Ya pasó por el middleware, podemos avanzar con nuestra ruta.
+
+**`./server/server.js`**
 
 ```javascript
 // 2. MIDDLEWARES
@@ -759,6 +776,8 @@ GET  {{url}}/api/users/auth
 ```
 
 - Finalmente, terminamos la ruta y hacemos un pequeño cambio en la ruta del register. No es necesario pasar toda la data.
+
+**`./server/server.js`**
 
 ```javascript
 // 2. MIDDLEWARES
@@ -796,6 +815,8 @@ app.post( …
 
 
 - Hacemos la ruta y el auth.
+
+**`./server/server.js`**
 
 ```javascript
 app.get(‘/api/user/logout’, auth, (req, res) => {
