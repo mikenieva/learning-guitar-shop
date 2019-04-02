@@ -330,7 +330,7 @@ app.post('/api/users/register', (req, res)=> {
 
 ```javascript
 
-const  { User } = require(‘./models/user’)
+const  { User } = require('./models/user')
 
 ```
 
