@@ -569,13 +569,17 @@ userSchema.methods.generateToken = function(cb){
 ```javascript
 …
 app.post(‘/api/users/login’, (req, res) => {
-    // Find the email
+    // 1. Encuentra el correo
         User.findOne({‘email’: req.body.email}, (err,user) => {
             if(!user) return res.json({loginSuccess: false, message: ‘Auth failed, email not found’})
-    // Grab the password and check the password
+            
+    // 2. Obtén el password y compruébalo            
+    
             user.comparePassword(req.body.password, (err, isMatch) => {
               if(!isMatch) return res.json({loginSuccess: false, message: "Wrong Password"})               
-    // If everything is correct, we generate a token
+              
+    // 3. Si todo es correcto, genera un token              
+    
               user.generateToken((err, user)=> {
                     if(err) return res.status(400).send(err)
                     // Si todo bien, debemos guardar este token como un “cookie”
@@ -616,18 +620,22 @@ app.post(‘/api/users/login’, (req, res) => {
 app.get(‘/api/users/auth’, (req, res) => {
             
 })
+```
 
 Ahora, vamos a crear un middleware para hacer la revisión.
 - Creamos una carpeta llamada middleware y dentro crearemos un archivo llamado auth.js
 
+```javascript
 const { User } = require(‘./../models/user’)
 let auth = (req, res, next) => {
         
 }
 module.exports = { auth }
+```
 
 - Regresamos a server.js. Para preparar el auth
 
+```javascript
 // 2. MIDDLEWARES
 const { auth } = require(‘./middleware/auth’)
 
