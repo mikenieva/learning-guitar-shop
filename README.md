@@ -201,7 +201,10 @@ require('dotenv').config()
 
 ```javascript
 ...
-mongoose.connect(process.env.DATABASE)
+mongoose.connect(process.env.DATABASE, { useNewUrlParser: true }, , (err) => {
+    if(err) return err
+    console.log("Conectado a MongoDB")
+})
 ```
 
 - Utiliza un middleware para convertir los datos que recibamos del cliente en Strings, arreglos o en JSON.
@@ -235,7 +238,10 @@ const mongoose = require('mongoose')
 
 require('dotenv').config()
 
-mongoose.connect(process.env.DATABASE)
+mongoose.connect(process.env.DATABASE, { useNewUrlParser: true }, , (err) => {
+    if(err) return err
+    console.log("Conectado a MongoDB")
+})
 
 app.use(express.urlencoded({extended: true}))
 app.use(express.json())
@@ -260,7 +266,7 @@ En este alcance, crearemos el modelo "User", el cual estará referido a los usua
 **`./server/server.js`**
 
 ```javascript
-app.post(‘/api/users/register’, ( )=> {
+app.post('/api/users/register', ()=> {
     res.status(200)
 })
 ```
