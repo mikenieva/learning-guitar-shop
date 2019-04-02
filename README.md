@@ -178,11 +178,15 @@ Durante todo este alcance, trabajaremos dentro de la carpeta "server". Crearemos
 
 - Crea un archivo .env en la raiz del proyecto y dentro agrega la línea:
 
+**`./.env`**
+
 ```javascript
 DATABASE=mongodb://localhost:27017/tiendaguitarras
 ```
 
 - Para poder utilizar .env, debes de agregar esta línea en el archivo de `server.js`:
+
+**`./server/server.js`**
 
 ```javascript
 ...
@@ -193,6 +197,8 @@ require('dotenv').config()
 
 - Conéctate a tu base de datos de MongoDB a través de mongoose, bajo el nombre de "tiendaguitarras" y utilizando la variable de `env` como la dirección de conexión a la base de datos.
 
+**`./server/server.js`**
+
 ```javascript
 ...
 mongoose.connect(process.env.DATABASE)
@@ -200,6 +206,7 @@ mongoose.connect(process.env.DATABASE)
 
 - Utiliza un middleware para convertir los datos que recibamos del cliente en Strings, arreglos o en JSON.
 
+**`./server/server.js`**
 ```javascript
 ...
 app.use(express.urlencoded({extended: true}))
@@ -208,12 +215,16 @@ app.use(express.json())
 
 - Utiliza un middleware para la inyección de cookies en la petición de datos desde el cliente.
 
+**`./server/server.js`**
+
 ```javascript
 ...
 app.use(cookieParser())
 ```
 
 Tu código final en este alcance debería ser:
+
+**`./server/server.js`**
 
 ```javascript
 const express = require('express')
@@ -246,6 +257,8 @@ En este alcance, crearemos el modelo "User", el cual estará referido a los usua
 
 - Crea el apartado de rutas “USERS” en `server.js` 
 
+**`./server/server.js`**
+
 ```javascript
 app.post(‘/api/users/register’, ( )=> {
     res.status(200)
@@ -254,7 +267,7 @@ app.post(‘/api/users/register’, ( )=> {
 
 - Crea tu carpeta de `models` y luego agrega `user.js` dentro de la misma. Observa las diferentes propiedades que agregaremos dentro del "Schema" y sus diferentes validaciones.
 
-*`models/user.js`*
+**`./server/models/user.js`**
 
 ```javascript
     const mongoose = require(‘mongoose’)
@@ -303,7 +316,7 @@ app.post(‘/api/users/register’, ( )=> {
 
 - Una vez armado el modelo, entramos a `server.js` y lo importamos.
 
-`./server/server.js`
+**`./server/server.js`**
 
 ```javascript
 
@@ -322,6 +335,8 @@ const  { User } = require(‘./models/user’)
 - Creamos un Key” llamado URL, y el nombre: http://localhost:3002. Todo esto con la intención de que cada vez que hagamos un request, no tengamos que reptir constantemente la URL.
 
 - Revisamos para hacer la llamada todo lo que necesitamos. Vamos a `server.js` en el área de USERS y rutas:
+
+**`./server/server.js`**
 
 ```javascript
 app.post(‘/api/users/register’, (req, res) => {
@@ -342,7 +357,7 @@ app.post(‘/api/users/register’, (req, res) => {
 
 ```javascript
 {
-    "email": "mikeœgmail.com",
+    "email": "mikenieva@gmail.com",
     "password": "password123",
     "name": "Mike",
     "lastname": "Nieva"
@@ -363,6 +378,7 @@ Con esto, creamos un usuario y confirmamos que aparece el documento en la base d
 - Lo que vamos a hacer antes de guardar el password en base de datos, es encriptarlo.
 - Vamos al modelo, de user.js
 
+**`./server/models/user.js`**
 ```javascript
 // IMPORTACIONES
 ...
@@ -389,6 +405,7 @@ userSchema.pre(’save’, function(next){
 
 Ahora, para evitar que si, más adelante, el usuario cambia su nombre y se vuelva a “hashear” el password porque salvó, tenemos que agregar un par de líneas más.
 
+**`./server/models/user.js`**
 
 ```javascript
 userSchema.pre(’save’, function(next){
@@ -415,35 +432,39 @@ userSchema.pre(’save’, function(next){
 
 ## 1.5 - BACKEND · Iniciando sesión con "users" y creando "tokens"
 
-LOGIN USERS AND CREATING TOKENS
-
 - Vamos a hacer una ruta POST en las rutas USER
 
+**`./server/server.js`**
 ```javascript
 …
 app.post(‘/api/users/login’, (req, res) => {
-    // Find the email
+    // 1. Encuentra el correo
         User.findOne({‘email’: req.body.email}, (err,user) => {
             if(!user) return res.json({loginSuccess: false, message: ‘Auth failed, email not found’})
             
         })
-    // Grab the password and check the password
+    // 2. Obtén el password y compruébalo
 
-    // If everything is correct, we generate a token
+    // 3. Si todo es correcto, genera un token
 })
 
+```
 - A partir de aquí, necesitamos bcrypt para decriptar el password. Iremos a los models, en user.js, para crear un método
 que me permita extraerlo.
 
 
-models/user.js
+**`./server/models/user.js`**
+```javascript
 …
 userSchema.methods.comparePassword = function(candidatePassword, cb){
         
 }
 ```
 
+
 - Vamos al servidor nuevamente...
+
+**`./server/server.js`**
 
 ```javascript
 …
@@ -532,6 +553,7 @@ userSchema.methods.generateToken = function(){
 
 .env
 
+**`./.env`**
 ```javascript
 DATABASE=…
 SECRET=SUPERSECRETPASSWORD123
