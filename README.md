@@ -466,7 +466,7 @@ app.post(‘/api/users/login’, (req, res) => {
 - Ahora, ¿cómo comparamos los passwords?, regresamos a models/user.js
 
 
-models/user.js
+*`models/user.js`*
 
 ```javascript
 …
@@ -476,12 +476,15 @@ userSchema.methods.comparePassword = function(candidatePassword, cb){
             cb(null, isMatch)
         })    
 }
+```
 
-
-- Y listo, con esto tenermos armada la función para que podamos verificar si los passwords matchean.
+- Y listo, con esto tenemos armada la función para que podamos verificar si los passwords matchean.
 - Ahora bien, si matchean, lo que debe pasar es generar un token de identificación.
 
 - Vamos a invocar una función llamada user.generateToken
+
+
+```javascript
 …
 
 app.post(‘/api/users/login’, (req, res) => {
