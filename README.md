@@ -164,7 +164,7 @@ Verifica que estén colocadas en tu `package.json`, dentro de tus dependencias.
   
   app.listen(port, () => {
     console.log(`Servidor corriendo en el puerto ${port}`)
-  }
+  })
   
 ```
 
