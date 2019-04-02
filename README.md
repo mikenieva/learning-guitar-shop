@@ -266,8 +266,8 @@ En este alcance, crearemos el modelo "User", el cual estará referido a los usua
 **`./server/server.js`**
 
 ```javascript
-app.post('/api/users/register', ()=> {
-    res.status(200)
+app.post('/api/users/register', (req, res)=> {
+    res.status(200).send('Funciona la conexión')
 })
 ```
 
