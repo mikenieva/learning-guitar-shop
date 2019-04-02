@@ -1,0 +1,25 @@
+{
+  "name": "tienda-guitarras-bedu",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^3.0.5",
+    "cloudinary": "^1.14.0",
+    "concurrently": "^4.1.0",
+    "cookie-parser": "^1.4.4",
+    "dotenv": "^7.0.0",
+    "express": "^4.16.4",
+    "express-formidable": "^1.2.0",
+    "jsonwebtoken": "^8.5.1",
+    "moment": "^2.24.0",
+    "mongoose": "^5.4.20",
+    "multer": "^1.4.1",
+    "nodemon": "^1.18.10"
+  }
+}

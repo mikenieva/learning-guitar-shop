@@ -55,7 +55,7 @@ Además, tu trabajo principal es realizar consultorías a distribuidoras de inst
 Por ello, después de varios años, has juntado suficiente dinero y confianza para aprovechar toda tu experiencia e invertir en crear un negocio propio.
 
 Tomas la decisión de programar una tienda de comercio electrónico y vender guitarras con un sistema más automatizado. 
-
+****
 Con los conocimientos del Bootcamp de programación que terminaste hace un par de meses, afirmas que cuentas con los conocimientos suficientes para ejecutarlo.
 
 Trazas una estrategia y planeas terminar el proyecto en 30 días.
