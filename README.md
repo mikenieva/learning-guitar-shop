@@ -276,7 +276,9 @@ app.post('/api/users/register', (req, res)=> {
 **`./server/models/user.js`**
 
 ```javascript
-    const mongoose = require(‘mongoose’)
+
+    const mongoose = require('mongoose')
+    
     const userSchema = mongoose.Schema({
         email: {
             type: String,
@@ -308,7 +310,7 @@ app.post('/api/users/register', (req, res)=> {
             default:[]
         },
         role: {
-            type: Number
+            type: Number,
             default: 0
         },
         token: {
@@ -317,7 +319,9 @@ app.post('/api/users/register', (req, res)=> {
     })
     
     const User = mongoose.model(‘User’, userSchema)
+    
     module.exports = { User }
+    
 ```
 
 - Una vez armado el modelo, entramos a `server.js` y lo importamos.
