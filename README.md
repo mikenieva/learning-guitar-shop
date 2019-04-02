@@ -706,7 +706,9 @@ module.exports = { auth }
 
 userSchema.statics.findByToken = function(token,cb){
     var user = this
-    // DECODE THE TOKEN TO CHECK IF THE TOKEN IS OK
+    
+    // Decodificamos el Token para checar si el mismo está ok
+    
     jwt.verify(token, process.env.SECRET, function(err, decode){
         user.findOne(“_id”: decode, “token”: token, function(err, user){
             if (err) cb(error)
@@ -729,7 +731,7 @@ const User = mongoose.model...
 const { User } = require(‘./../models/user’)
 let auth = (req, res, next) => {
     
-//// Token
+// TOKEN
     let token = req.cookies.w_auth
     User.findByToken(token, (err, user)=> { 
         if(err) throw err
