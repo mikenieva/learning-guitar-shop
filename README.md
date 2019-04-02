@@ -393,7 +393,7 @@ Ahora, para evitar que si, más adelante, el usuario cambia su nombre y se vuelv
 ```javascript
 userSchema.pre(’save’, function(next){
     var user = this
-    if(user.isModified(‘password')){
+    if(user.isModified('password')){
         bcrypt.genSalt(SALT_I, function(err, salt){
             if(err) return next(err)
             bcrypt.hash(user.password, salt, function(err, hash){
@@ -448,19 +448,17 @@ userSchema.methods.comparePassword = function(candidatePassword, cb){
 ```javascript
 …
 app.post(‘/api/users/login’, (req, res) => {
-    // Find the email
+    // 1. Encuentra el correo
         User.findOne({‘email’: req.body.email}, (err,user) => {
-            if(!user) return res.json({loginSuccess: false, message: ‘Auth failed, email not found’})
-            
+            if(!user) return res.json({loginSuccess: false, message: ‘Auth fallida, email no encontrado’})
+    // 2. Obtén el password y compruébalo
             user.comparePassword(req.body.password, (err, isMatch) => {
-              if(!isMatch) return res.json({loginSuccess: false, message: “Wrong Password"})               
+              if(!isMatch) return res.json({loginSuccess: false, message: "Password erróneo"})               
               
-              //
+    // 3. Si todo es correcto, genera un token
+    
             })
         })
-    // Grab the password and check the password
-
-    // If everything is correct, we generate a token
 })
 ```
 
@@ -487,26 +485,26 @@ userSchema.methods.comparePassword = function(candidatePassword, cb){
 …
 
 app.post(‘/api/users/login’, (req, res) => {
-    // Find the email
+    // 1. Encuentra el correo
         User.findOne({‘email’: req.body.email}, (err,user) => {
             if(!user) return res.json({loginSuccess: false, message: ‘Auth failed, email not found’})
-            
+    // 2. Obtén el password y compruébalo            
             user.comparePassword(req.body.password, (err, isMatch) => {
-              if(!isMatch) return res.json({loginSuccess: false, message: “Wrong Password"})               
+              if(!isMatch) return res.json({loginSuccess: false, message: "Wrong Password"})               
+              
+    // 3. Si todo es correcto, genera un token              
               user.generateToken((err, user)=> {
                     
                 })
             })
         })
-    // Grab the password and check the password
 
-    // If everything is correct, we generate a token
 })
 ```
 
 - Y luego, vamos a declararla en nuestros models/user.js
 
-models/user.js
+*`./server/models/user.js`*
 
 ```javascript
 // IMPORTACIONES
@@ -573,7 +571,7 @@ app.post(‘/api/users/login’, (req, res) => {
             if(!user) return res.json({loginSuccess: false, message: ‘Auth failed, email not found’})
     // Grab the password and check the password
             user.comparePassword(req.body.password, (err, isMatch) => {
-              if(!isMatch) return res.json({loginSuccess: false, message: “Wrong Password"})               
+              if(!isMatch) return res.json({loginSuccess: false, message: "Wrong Password"})               
     // If everything is correct, we generate a token
               user.generateToken((err, user)=> {
                     if(err) return res.status(400).send(err)
@@ -713,20 +711,21 @@ app.get(‘/api/users/auth’, auth, (req, res) => {
         
     })
 })
-
-- Vamos a Postman para validar la llamada. Deberías recibir el usuario como tal.
-GET  {{url}}/api/users/auth
-
-=> {
-        "user”: {
-                “cart”: []
-                ...
-            }
-    }
 ```
 
-- Ahora, no quiero retornar toda la información. No será necesario. Sólo algunos datos. Para ello, vamos a cambiar:
-Y hacemos un pequeño cambio en la ruta del register. No es necesario pasar toda la data. Quitamos esa línea
+- Vamos a Postman para validar la llamada. Deberías recibir el usuario como tal.
+
+GET  {{url}}/api/users/auth
+```javascript
+{
+  "user": {
+    "cart": []
+    ...
+    }
+}
+```
+
+- Finalmente, terminamos la ruta y hacemos un pequeño cambio en la ruta del register. No es necesario pasar toda la data.
 
 ```javascript
 // 2. MIDDLEWARES
