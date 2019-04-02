@@ -589,8 +589,8 @@ app.post(‘/api/users/login’, (req, res) => {
 
 ```javascript
 {
-    “email”: “mike@gmail.com”
-    “password”: “password123"
+    "email": "mike@gmail.com",
+    "password": "password123"
 }
 ```
 
