@@ -415,7 +415,7 @@ userSchema.pre('save', function(next){
 
 - Para revisar que funciona, generemos un usuario nuevo y ahora deberemos ver el password “hasheado”.
 
-- Ahora, esta línea, no importando si crea o edita la información el usuario, se volverá a encriptar el password. Para que suceda sólamente cuando creamos el usuario o modifiquemos el password, agregamos:
+- Ahora, esta línea, no importando si se crea o edita la información del usuario, volverá a encriptar el password en cada llamada. Para que suceda sólamente cuando creamos el usuario o modifiquemos el password, agregamos:
 
 **`./server/models/user.js`**
 
