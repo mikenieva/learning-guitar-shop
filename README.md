@@ -342,14 +342,15 @@ const  { User } = require('./models/user')
 
 - Creamos una variable en “Settings” y agregamos un “Environment”. 
 
-- Creamos un Key” llamado URL, y el nombre: http://localhost:3002. Todo esto con la intención de que cada vez que hagamos un request, no tengamos que reptir constantemente la URL.
+- Creamos un "Key" llamado URL, y el nombre: `http://localhost:3002`. Todo esto con la intención de que cada vez que hagamos un request, no tengamos que reptir constantemente la URL. Confirmamos haciendo una llamada HTTP nuevamente.
 
-- Revisamos para hacer la llamada todo lo que necesitamos. Vamos a `server.js` en el área de USERS y rutas:
+- Vamos a `server.js`, en las rutas de `USERS`:
 
 **`./server/server.js`**
 
 ```javascript
-app.post(‘/api/users/register’, (req, res) => {
+
+app.post('/api/users/register', (req, res) => {
     const user = new User(req.body)
     user.save((err, doc) => {
         if(err) return res. json({success: false, err})
@@ -359,11 +360,12 @@ app.post(‘/api/users/register’, (req, res) => {
         })
     })
 })
+
 ```
 
-- Ponemos en POSTMAN, una llamada POST. Cuidar el Headers con Content-Type y application/json.
+- Ponemos en POSTMAN, una llamada POST. Cuidar el HEADERS agregando el correcto `Content-Type` y `application/json`.
 
-- Luego, en BODY, pasamos un objeto JSON, en raw:
+- Luego, en BODY, pasamos un objeto JSON, con la opción 'raw':
 
 ```javascript
 {
@@ -384,20 +386,20 @@ Con esto, creamos un usuario y confirmamos que aparece el documento en la base d
 
 ## 1.4 - BACKEND · Encriptando "passwords"
 
-- Ahora, el password deberíamos hashearlo o encriptarlo. Lo haremos en la siguiente parte.
-- Lo que vamos a hacer antes de guardar el password en base de datos, es encriptarlo.
-- Vamos al modelo, de user.js
+- Ahora, el password deberíamos hashearlo o encriptarlo. Lo haremos en la siguiente parte. Lo que debemos hacer antes de guardar el password en base de datos es encriptarlo, para mantener la seguridad del mismo.
+
+- Agregamos en el modelo de User:
 
 **`./server/models/user.js`**
 ```javascript
 // IMPORTACIONES
 ...
-const bcrypt = require(‘bcrypt’)
+const bcrypt = require('bcrypt')
 CONST SALT_I = 10
 // SCHEMA
 ...
 // MIDDLEWARE
-userSchema.pre(’save’, function(next){
+userSchema.pre('save', function(next){
     var user = this
     
     bcrypt.genSalt(SALT_I, function(err, salt){
@@ -413,12 +415,12 @@ userSchema.pre(’save’, function(next){
 
 - Para revisar que funciona, generemos un usuario nuevo y ahora deberemos ver el password “hasheado”.
 
-Ahora, para evitar que si, más adelante, el usuario cambia su nombre y se vuelva a “hashear” el password porque salvó, tenemos que agregar un par de líneas más.
+- Ahora, esta línea, no importando si crea o edita la información el usuario, se volverá a encriptar el password. Para que suceda sólamente cuando creamos el usuario o modifiquemos el password, agregamos:
 
 **`./server/models/user.js`**
 
 ```javascript
-userSchema.pre(’save’, function(next){
+userSchema.pre('save', function(next){
     var user = this
     if(user.isModified('password')){
         bcrypt.genSalt(SALT_I, function(err, salt){
@@ -447,10 +449,10 @@ userSchema.pre(’save’, function(next){
 **`./server/server.js`**
 ```javascript
 …
-app.post(‘/api/users/login’, (req, res) => {
+app.post('/api/users/login', (req, res) => {
     // 1. Encuentra el correo
-        User.findOne({‘email’: req.body.email}, (err,user) => {
-            if(!user) return res.json({loginSuccess: false, message: ‘Auth failed, email not found’})
+        User.findOne({'email': req.body.email}, (err,user) => {
+            if(!user) return res.json({loginSuccess: false, message: 'Auth fallida, email no encontrado'})
             
         })
     // 2. Obtén el password y compruébalo
@@ -478,10 +480,10 @@ userSchema.methods.comparePassword = function(candidatePassword, cb){
 
 ```javascript
 …
-app.post(‘/api/users/login’, (req, res) => {
+app.post('/api/users/login', (req, res) => {
     // 1. Encuentra el correo
-        User.findOne({‘email’: req.body.email}, (err,user) => {
-            if(!user) return res.json({loginSuccess: false, message: ‘Auth fallida, email no encontrado’})
+        User.findOne({'email': req.body.email}, (err,user) => {
+            if(!user) return res.json({loginSuccess: false, message: 'Auth fallida, email no encontrado'})
     // 2. Obtén el password y compruébalo
             user.comparePassword(req.body.password, (err, isMatch) => {
               if(!isMatch) return res.json({loginSuccess: false, message: "Password erróneo"})               
@@ -519,10 +521,10 @@ userSchema.methods.comparePassword = function(candidatePassword, cb){
 ```javascript
 …
 
-app.post(‘/api/users/login’, (req, res) => {
+app.post('/api/users/login', (req, res) => {
     // 1. Encuentra el correo
-        User.findOne({‘email’: req.body.email}, (err,user) => {
-            if(!user) return res.json({loginSuccess: false, message: ‘Auth failed, email not found’})
+        User.findOne({'email': req.body.email}, (err,user) => {
+            if(!user) return res.json({loginSuccess: false, message: 'Auth fallida, email no encontrado'})
     // 2. Obtén el password y compruébalo            
             user.comparePassword(req.body.password, (err, isMatch) => {
               if(!isMatch) return res.json({loginSuccess: false, message: "Wrong Password"})               
@@ -575,9 +577,9 @@ SECRET=SUPERSECRETPASSWORD123
 
 ```javascript
 // IMPORTACIONES
-const jwt = require(‘jsonwebtoken’)
+const jwt = require('jsonwebtoken')
 …
-require(‘dotenv’).config()
+require('dotenv').config()
 …
 userSchema.methods.comparePassword = function(candidatePassword, cb){
         bcrypt.compare(candidatePassword, this.password, this.password, function(err, isMatch){
@@ -591,7 +593,7 @@ userSchema.methods.generateToken = function(cb){
     var user = this
     var token = jwt.sign(user._id.toHexString(),process.env.SECRET)
     
-    // token = user.id + password (the password of environment, the server only know)
+    // Token = user.id + password (el password del ambiente. Sólo el servidor lo sabrá)
     user.token = token
     user.save(function(err, user){
         if(err) return cb(err)        
@@ -606,10 +608,10 @@ userSchema.methods.generateToken = function(cb){
 
 ```javascript
 …
-app.post(‘/api/users/login’, (req, res) => {
+app.post('/api/users/login', (req, res) => {
     // 1. Encuentra el correo
-        User.findOne({‘email’: req.body.email}, (err,user) => {
-            if(!user) return res.json({loginSuccess: false, message: ‘Auth failed, email not found’})
+        User.findOne({'email': req.body.email}, (err,user) => {
+            if(!user) return res.json({loginSuccess: false, message: 'Auth fallida, email no encontrado'})
             
     // 2. Obtén el password y compruébalo            
     
@@ -620,8 +622,8 @@ app.post(‘/api/users/login’, (req, res) => {
     
               user.generateToken((err, user)=> {
                     if(err) return res.status(400).send(err)
-                    // Si todo bien, debemos guardar este token como un “cookie”
-                    res.cookie(‘w_auth’, user.token).status(200).json(
+                    // Si todo bien, debemos guardar este token como un "cookie"
+                    res.cookie('w_auth', user.token).status(200).json(
                         {loginSuccess: true}
                     )
                 })
@@ -655,7 +657,7 @@ app.post(‘/api/users/login’, (req, res) => {
 **`./server/server.js`**
 
 ```javascript
-app.get(‘/api/users/auth’, (req, res) => {
+app.get('/api/users/auth', (req, res) => {
             
 })
 ```
@@ -667,7 +669,7 @@ Ahora, vamos a crear un middleware para hacer la revisión.
 **`./server/middleware/auth.js`**
 
 ```javascript
-const { User } = require(‘./../models/user’)
+const { User } = require('./../models/user')
 let auth = (req, res, next) => {
         
 }
@@ -680,10 +682,10 @@ module.exports = { auth }
 
 ```javascript
 // 2. MIDDLEWARES
-const { auth } = require(‘./middleware/auth’)
+const { auth } = require('./middleware/auth')
 
 …
-app.get(‘/api/users/auth’, auth, (req, res) => {
+app.get('/api/users/auth', auth, (req, res) => {
             
 })
 ```
@@ -694,7 +696,7 @@ app.get(‘/api/users/auth’, auth, (req, res) => {
 **`./server/middleware/auth.js`**
 ```javascript
 
-const { User } = require(‘./../models/user’)
+const { User } = require('./../models/user')
 let auth = (req, res, next) => {
     
 //// Token
@@ -720,7 +722,7 @@ userSchema.statics.findByToken = function(token,cb){
     // Decodificamos el Token para checar si el mismo está ok
     
     jwt.verify(token, process.env.SECRET, function(err, decode){
-        user.findOne(“_id”: decode, “token”: token, function(err, user){
+        user.findOne("_id": decode, “token”: token, function(err, user){
             if (err) cb(error)
             cb(null, user)
         }         
@@ -738,7 +740,7 @@ const User = mongoose.model...
 
 ```javascript
 
-const { User } = require(‘./../models/user’)
+const { User } = require('./../models/user')
 let auth = (req, res, next) => {
     
 // TOKEN
@@ -764,10 +766,10 @@ Una vez que completamos y damos next( ), avanzamos al server.js. Ya pasó por el
 
 ```javascript
 // 2. MIDDLEWARES
-const { auth } = require(‘./middleware/auth’)
+const { auth } = require('./middleware/auth')
 
 …
-app.get(‘/api/users/auth’, auth, (req, res) => {
+app.get('/api/users/auth', auth, (req, res) => {
     res.status(200).json({
         user: req.user
         
@@ -796,7 +798,7 @@ GET  {{url}}/api/users/auth
 const { auth } = require(‘./middleware/auth’)
 
 …
-app.get(‘/api/users/auth’, auth, (req, res) => {
+app.get('/api/users/auth', auth, (req, res) => {
     res.status(200).json({
         isAdmin: req.user.role === 0 ? false : true,
         isAuth: true,
@@ -831,10 +833,10 @@ app.post( …
 **`./server/server.js`**
 
 ```javascript
-app.get(‘/api/user/logout’, auth, (req, res) => {
+app.get('/api/user/logout', auth, (req, res) => {
     User.findOneAndUpdate(
         {_id: req.user._id},
-        {token: ‘’},
+        {token: ''},
         (err, doc) => {
             if(err) return res.json({success: false, err})
             return res.status(200).json({
