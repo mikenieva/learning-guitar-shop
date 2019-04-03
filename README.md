@@ -504,7 +504,7 @@ app.post('/api/users/login', (req, res) => {
 ```javascript
 …
 userSchema.methods.comparePassword = function(candidatePassword, cb){
-        bcrypt.compare(candidatePassword, this.password, this.password, function(err, isMatch){
+        bcrypt.compare(candidatePassword, this.password, function(err, isMatch){
             if(err) return cb(err)
             cb(null, isMatch)
         })    
@@ -548,7 +548,7 @@ app.post('/api/users/login', (req, res) => {
 const jwt = require(‘jsonwebtoken’)
 …
 userSchema.methods.comparePassword = function(candidatePassword, cb){
-        bcrypt.compare(candidatePassword, this.password, this.password, function(err, isMatch){
+        bcrypt.compare(candidatePassword, this.password, function(err, isMatch){
             if(err) return cb(err)
             cb(null, isMatch)
         })    
@@ -582,7 +582,7 @@ const jwt = require('jsonwebtoken')
 require('dotenv').config()
 …
 userSchema.methods.comparePassword = function(candidatePassword, cb){
-        bcrypt.compare(candidatePassword, this.password, this.password, function(err, isMatch){
+        bcrypt.compare(candidatePassword, this.password, function(err, isMatch){
             if(err) return cb(err)
             cb(null, isMatch)
         })    
