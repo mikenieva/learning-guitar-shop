@@ -201,7 +201,7 @@ require('dotenv').config()
 
 ```javascript
 ...
-mongoose.connect(process.env.DATABASE, { useNewUrlParser: true }, , (err) => {
+mongoose.connect(process.env.DATABASE, { useNewUrlParser: true }, (err) => {
     if(err) return err
     console.log("Conectado a MongoDB")
 })
