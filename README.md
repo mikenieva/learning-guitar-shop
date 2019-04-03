@@ -395,7 +395,7 @@ Con esto, creamos un usuario y confirmamos que aparece el documento en la base d
 // IMPORTACIONES
 ...
 const bcrypt = require('bcrypt')
-CONST SALT_I = 10
+const SALT_I = 10
 // SCHEMA
 ...
 // MIDDLEWARE
