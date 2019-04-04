@@ -2,43 +2,44 @@
 
 ## Índice
 
-- [Preámbulo](#preámbulo)
+- [Preambulo](#preámbulo)
 - [Resumen del proyecto](#resumen-del-proyecto)
-- [Consideraciones técnicas](#consideraciones-tecnicas)
+- [Consideraciones técnicas](#consideraciones-técnicas)
 - [Descripción de alcances](#resumen-del-proyecto)
 
-* [0. Instalación y configuraciones iniciales](#resumen-del-proyecto)
-  - [Alcance 0.1 - Estructura de Carpetas](#alcances-01)
-  - [Alcance 0.2 - Instalación de dependencias](#alcances-02)
+***
+
+- [0. Instalación y configuraciones iniciales](#resumen-del-proyecto)
+  - [Alcance 0.1 - Estructura de Carpetas](#alcances-001)
+  - [Alcance 0.2 - Instalación de dependencias](#alcances-002)
   
-* [1. Backend (Middlewares, Models & Routes)](#iteraciones)
-  * [Alcance 1.1 - BACKEND · Creando el servidor, el archivo .env y "Middlewares"]()
-  * [Alcance 1.2 - BACKEND · Creando el modelo "User"]()
-  * [Alcance 1.3 - BACKEND · Registrando "users"]()
-  * [Alcance 1.4 - BACKEND · Encriptando "passwords"]()
-  * [Alcance 1.5 - BACKEND · Iniciando sesión con "users" y creando "tokens"]()
-  * [Alcance 1.6 - BACKEND · Creando una ruta de Autenticación]()
-  * [Alcance 1.7 - BACKEND · Cerrando sesión de "users"]()
-  * [Alcance 1.8 - BACKEND · Creando el modelo "Brand" y sus rutas]()
-  * [Alcance 1.9 - BACKEND · Creando el modelo "Woods" y sus rutas]()
-  * [Alcance 1.10 - BACKEND · Agregando productos]()
-  * [Alcance 1.11 - BACKEND · Obteniendo los productos por ID]()
-  * [Alcance 1.12 - BACKEND · Obteniendo los productos por orden]()
+- [1. Backend (Middlewares, Models & Routes)](#iteraciones)
+  - [Alcance 1.1 - BACKEND · Creando el servidor, el archivo .env y "Middlewares"](#alcances-101)
+  - [Alcance 1.2 - BACKEND · Creando el modelo "User"](#alcances-102)
+  - [Alcance 1.3 - BACKEND · Registrando "users"](#alcances-103)
+  - [Alcance 1.4 - BACKEND · Encriptando "passwords"](#alcances-104)
+  - [Alcance 1.5 - BACKEND · Iniciando sesión con "users" y creando "tokens"](#alcances-105)
+  - [Alcance 1.6 - BACKEND · Creando una ruta de Autenticación](#alcances-106)
+  - [Alcance 1.7 - BACKEND · Cerrando sesión de "users"](#alcances-107)
+  - [Alcance 1.8 - BACKEND · Creando el modelo "Brand" y sus rutas](#alcances-108)
+  - [Alcance 1.9 - BACKEND · Creando el modelo "Woods" y sus rutas](#alcances-109)
+  - [Alcance 1.10 - BACKEND · Agregando productos](#alcances-110)
+  - [Alcance 1.11 - BACKEND · Obteniendo los productos por ID](#alcances-111)
+  - [Alcance 1.12 - BACKEND · Obteniendo los productos por orden](#alcances-112)
 
-* [2. Frontend (Authentication)](#iteraciones)
+- [2. Frontend (Authentication)](#iteraciones)
+  - [Alcance 2.1 - FRONTEND · Configuración, dependencias y scripts](#alcances-121)
+  - [Alcance 2.2 - FRONTEND · Creando el Header y el Footer](#alcances-122)
+  - [Alcance 2.3 - FRONTEND · Configurando Redux](#alcances-123)
+  - [Alcance 2.4 - FRONTEND · Agregando componente de "Registro" e "Inicio de Sesión"](#alcances-124)
+  - [Alcance 2.5 - FRONTEND · Desarrollando el inicio de sesión](#alcances-125)
+  - [Alcance 2.6 - FRONTEND · Desarrollando el registro](#alcances-126)
+  - [Alcance 2.7 - FRONTEND · Creando el "dashboard"](#alcances-127)
+  - [Alcance 2.8 - FRONTEND · Prevención de rutas](#alcances-128)
 
-  * [Alcance 2.1 - FRONTEND · Configuración, dependencias y scripts]()
-  * [Alcance 2.2 - FRONTEND · Creando el Header y el Footer]()
-  * [Alcance 2.3 - FRONTEND · Configurando Redux]()
-  * [Alcance 2.4 - FRONTEND · Agregando componente de "Registro" e "Inicio de Sesión"]()
-  * [Alcance 2.5 - FRONTEND · Desarrollando el inicio de sesión]()
-  * [Alcance 2.6 - FRONTEND · Desarrollando el registro]()
-  * [Alcance 2.7 - FRONTEND · Creando el "dashboard"]()
-  * [Alcance 2.8 - FRONTEND · Prevención de rutas]()
+- [3. Frontend (Landing Page + Shop + Admin Page)](#iteraciones)
 
-* [3. Frontend (Landing Page + Shop + Admin Page)](#iteraciones)
-
-* [4. Frontend (Checkout + Payment Process)](#iteraciones)
+- [4. Frontend (Checkout + Payment Process)](#iteraciones)
 
 ***
 
@@ -54,8 +55,8 @@ Además, tu trabajo principal es realizar consultorías a distribuidoras de inst
 
 Por ello, después de varios años, has juntado suficiente dinero y confianza para aprovechar toda tu experiencia e invertir en crear un negocio propio.
 
-Tomas la decisión de programar una tienda de comercio electrónico y vender guitarras con un sistema más automatizado. 
-****
+Tomas la decisión de programar una tienda de comercio electrónico y vender guitarras con un sistema más automatizado.
+
 Con los conocimientos del Bootcamp de programación que terminaste hace un par de meses, afirmas que cuentas con los conocimientos suficientes para ejecutarlo.
 
 Trazas una estrategia y planeas terminar el proyecto en 30 días.
@@ -72,24 +73,22 @@ Construirás una tienda de comercio electrónico bajo el esquema MERN, en el cua
 El proyecto estará dividido en alcances. Su intención es brindarte un camino para que lo puedas ir resolviendo paso a paso.
 
 Recuerda que al terminar cada alcance, deberás realizar un "commit" para asegurar tu progreso dentro de tu repositorio.
- 
 
 ## Consideraciones técnicas
 
-* [NodeJS](https://nodejs.org)
-* [Postman](https://www.getpostman.com/)
-* [MongoDB](https://docs.mongodb.com/manual/administration/install-community/)
-* [MongoDB Compass](https://www.mongodb.com/products/compass)
-* [Visual Studio Code](https://code.visualstudio.com/)
-* [Git](https://git-scm.com/downloads)
-* ["GitHub Reposity: Projects & Issues"](https://help.github.com/en/articles/about-project-boards)
+- [NodeJS](https://nodejs.org)
+- [Postman](https://www.getpostman.com/)
+- [MongoDB](https://docs.mongodb.com/manual/administration/install-community/)
+- [MongoDB Compass](https://www.mongodb.com/products/compass)
+- [Visual Studio Code](https://code.visualstudio.com/)
+- [Git](https://git-scm.com/downloads)
+- [GitHub Reposity: Projects & Issues](https://help.github.com/en/articles/about-project-boards)
 
 ***
 
 ## Alcances 0 · Instalación y configuraciones iniciales
 
 En este módulo, trabajaremos nuestra estructura de carpetas, revisaremos las dependencias que nuestro BACKEND necesita y finalmente haremos la configuración mínima para levantar el servidor en el puerto 3002.
-
 
 ## 0.1 - Estructura de Carpetas
 
@@ -98,8 +97,9 @@ En este módulo, trabajaremos nuestra estructura de carpetas, revisaremos las de
 - Crea una carpeta `server` y dentro coloca un archivo `server.js`. Dentro levantaremos nuestro servidor para el ambiente "Backend"
 - Crea un archivo .gitignore y coloca dentro los archivos que deberemos ignorar. Te recomendamos colocar:
 
-#### `./.gitignore`
-```
+**`./.gitignore`**
+
+```javascript
 /node_modules
 /build
 /client/node_modules
@@ -114,7 +114,7 @@ yarn-error.log*
 
 - Al finalizar la iteración, deberías tener esta estructura de carpetas:
 
-```
+```javascript
 |--client
 |--server
 |   |--server.js
@@ -127,25 +127,27 @@ yarn-error.log*
 
 - Instala las dependencias para el proyecto:
 
-#### `Servidor`
-- nodemon - Herramienta para monitorear cambios en una aplicación y reiniciarla cada vez que suceda uno.
-- bcrypt - Encriptación de contraseñas.
-- cloudinary - Subir imágenes a plataforma de [Cloudinary](https://cloudinary.com/).
-- concurrently - Levanta varias sesiones de Node.js en un sólo comando.
-- cookie-parser - Mantener la sesión del usuario sobre el navegador (lado del cliente).
-- dotenv - Archivo que mantiene tus datos sensibles, almacenados en `.env`, en la raiz de tu proyecto.
-- express - Framework Web para crear nuestro Backend y sus derivados.
-- express-formidable - Middleware de Node.js que permite convertir datos de formularios, incluyendo subida de archivos.
-- jsonwebtoken -Implementación de Json Web Tokens (una manera de transmitir de forma segura información entre partes como un objeto JSON)
-- moment - Convierte, valida y muestra fechas y tiempos en Javascript
-- mongoose - Herramienta para modelar objetos con MongoDB
+### `Servidor`
+
+- [nodemon](https://www.npmjs.com/package/nodemon) - Herramienta para monitorear cambios en una aplicación y reiniciarla cada vez que suceda uno.
+- [bcrypt](https://www.npmjs.com/package/bcrypt) - Encriptación de contraseñas.
+- [cloudinary](https://www.npmjs.com/package/cloudinary) - Subir imágenes a plataforma de [Cloudinary](https://cloudinary.com/).
+- [concurrently]https://www.npmjs.com/package/concurrently() - Levanta varias sesiones de Node.js en un sólo comando.
+- [cookie-parser](https://www.npmjs.com/package/cookie-parser) - Mantener la sesión del usuario sobre el navegador (lado del cliente).
+- [dotenv](https://www.npmjs.com/package/dotenv) - Archivo que mantiene tus datos sensibles, almacenados en `.env`, en la raiz de tu proyecto.
+- [express](https://www.npmjs.com/package/express) - Framework Web para crear nuestro Backend y sus derivados.
+- [express-formidable](https://www.npmjs.com/package/express-formidable) - Middleware de Node.js que permite convertir datos de formularios, incluyendo subida de archivos.
+- [jsonwebtoken](https://www.npmjs.com/package/jsonwebtoken) -Implementación de Json Web Tokens (una manera de transmitir de forma segura información entre partes como un objeto JSON)
+- [moment](https://www.npmjs.com/package/moment) - Convierte, valida y muestra fechas y tiempos en Javascript
+- [mongoose](https://www.npmjs.com/package/mongoose) - Herramienta para modelar objetos con MongoDB
 - [multer](https://www.npmjs.com/package/multer) - Middleware que permite la transmisión de formatos de datos del tipo imagen o archivos.
 
 Verifica que estén colocadas en tu `package.json`, dentro de tus dependencias.
 
 - Crea el script "server" dentro de tu package.json que corra `nodemon` sobre tu archivo `server.js`.
 
-#### `./package.json`
+**`./package.json`**
+
 ```javascript
 ...
 "scripts":{
@@ -156,7 +158,8 @@ Verifica que estén colocadas en tu `package.json`, dentro de tus dependencias.
 
 - Levanta el servidor en el puerto 3002
 
-#### `./server/server.js`
+**`./server/server.js`**
+
 ```javascript
   const express = require('express')
   const app = express()
@@ -278,7 +281,7 @@ app.post('/api/users/register', (req, res)=> {
 ```javascript
 
     const mongoose = require('mongoose')
-    
+
     const userSchema = mongoose.Schema({
         email: {
             type: String,
@@ -300,11 +303,11 @@ app.post('/api/users/register', (req, res)=> {
             type: String,
             required: true,
             maxlength: 100
-        },        
+        },
         cart: {
             type: Array,
             default: []
-        },         
+        },
         history:{
             type: Array,
             default:[]
@@ -317,11 +320,11 @@ app.post('/api/users/register', (req, res)=> {
             type: String
         }
     })
-    
+
     const User = mongoose.model('User', userSchema, "users")
-    
+
     module.exports = { User }
-    
+
 ```
 
 - Una vez armado el modelo, entramos a `server.js` y lo importamos.
@@ -388,38 +391,48 @@ Con esto, creamos un usuario y confirmamos que aparece el documento en la base d
 
 - Ahora, el password deberíamos hashearlo o encriptarlo. Lo haremos en la siguiente parte. Lo que debemos hacer antes de guardar el password en base de datos es encriptarlo, para mantener la seguridad del mismo.
 
-- Agregamos en el modelo de User:
+- Utilizaremos `.pre` dentro del modelo `user.js`
+
+Lo que realiza este método es ejecutar antes del `.save()` sentencias que tú necesites realizar. Funciona como middleware.
+
+Esto significa que antes de inyectar el password a la base de datos, primero lo encriptará y después lo pasará a la ruta que tenemos en `server.js`
+
+Como dato adicional, observamos que tenemos un `this.isModified`. Esta línea implica que sólo hará la encriptación del password cuando estemos creando el usuario por primera vez o, estemos modificando literalmente el password. 
+
+En caso de que no esté siendo modificado, entonces, no es necesario volver a hacer la encriptación.
 
 **`./server/models/user.js`**
+
 ```javascript
+
 // IMPORTACIONES
 ...
 const bcrypt = require('bcrypt')
 const SALT_I = 10
+
 // SCHEMA
 ...
+
 // MIDDLEWARE
-userSchema.pre('save', function(next){
-    var user = this
-    
-    bcrypt.genSalt(SALT_I, function(err, salt){
-        if(err) return next(err)
-        bcrypt.hash(user.password, salt, function(err, hash){
-             if(err) return next(err)
-             user.password = hash
-             next()           
-        })
-    })
+userSchema.pre('save', async function (next){
+    if(this.isModified('password')){
+        try {
+            const salt = await bcrypt.genSalt(SALT_I)
+            const hash = await bcrypt.hash(this.password, salt)
+            this.password = hash;
+            next();
+        } catch(err){
+            return next(err);
+        }
+    }
 })
+
 ```
-
-- Para revisar que funciona, generemos un usuario nuevo y ahora deberemos ver el password “hasheado”.
-
-- Ahora, esta línea, no importando si se crea o edita la información del usuario, volverá a encriptar el password en cada llamada. Para que suceda sólamente cuando creamos el usuario o modifiquemos el password, agregamos:
 
 **`./server/models/user.js`**
 
 ```javascript
+
 userSchema.pre('save', function(next){
     var user = this
     if(user.isModified('password')){
@@ -428,7 +441,7 @@ userSchema.pre('save', function(next){
             bcrypt.hash(user.password, salt, function(err, hash){
                 if(err) return next(err)
                 user.password = hash
-                next()           
+                next()
             })
         })
     } else {
@@ -437,44 +450,67 @@ userSchema.pre('save', function(next){
 })
 ```
 
-
-- Revisamos en POSTMAN que sigue registrando sin problemas los usuarios
+- Para revisar que funciona, generemos un usuario nuevo y ahora deberemos ver el password en modo "hash" o mejor dicho, encriptado.
 
 ***
 
 ## 1.5 - BACKEND · Iniciando sesión con "users" y creando "tokens"
 
-- Vamos a hacer una ruta POST en las rutas USER
+- Vamos a hacer una ruta POST para USER.
+
+Para poder realizar el login, debemos lograr 3 objetivos:
+
+1. Encontrar el correo dentro de la base de datos.
+2. Obtener el password y revisar que el que se está enviando es el mismo que el que tenemos en base de datos.
+3. Finalmente, generar un "token", el cual es un "string" largo que se guarda en el navegador para asegurar que tienes una sesión y no tengas que hacer login a cada momento que te mueves en la página.
+
+Vayamos por partes. Encontremos el password.
+
+Observemos que si no encuentra un usuario, entonces devolvemos un mensaje sobre el email no hallado.
 
 **`./server/server.js`**
+
 ```javascript
 …
+
 app.post('/api/users/login', (req, res) => {
     // 1. Encuentra el correo
         User.findOne({'email': req.body.email}, (err,user) => {
             if(!user) return res.json({loginSuccess: false, message: 'Auth fallida, email no encontrado'})
-            
+
         })
+
     // 2. Obtén el password y compruébalo
 
     // 3. Si todo es correcto, genera un token
 })
 
 ```
-- A partir de aquí, necesitamos bcrypt para decriptar el password. Iremos a los models, en user.js, para crear un método
-que me permita extraerlo.
 
+Ahora, necesitaremos obtener ambos passwords y luego compararlos para saber si son los mismos.
+
+Iremos a los `models`, en `user.js`, para crear un método que me permita realizar una comparativa. 
+
+ `userSchema.methods.comparePassword`. Significa que estamos extendiendo una función a nuestro `Schema` para que los podamos ejecutar en la llamada desde `server.js`.
 
 **`./server/models/user.js`**
+
 ```javascript
 …
+
 userSchema.methods.comparePassword = function(candidatePassword, cb){
-        
+
 }
+
 ```
 
+Aún no tiene nada, pero está bien.
 
-- Vamos al servidor nuevamente...
+Regresamos a server.js para construir el segundo paso.
+
+Observa que le estamos pasando como primer argumento el password que obtenemos de la llamada y en el segundo argumento hay un callback.
+
+`isMatch` es un booleano que me determina si los passwords coinciden o no coinciden. En caso de que no coincidan o sea falso esto (!match), entonces pediremos que regrese un mensaje de password erróneo.
 
 **`./server/server.js`**
 
@@ -495,9 +531,18 @@ app.post('/api/users/login', (req, res) => {
 })
 ```
 
+Regresamos al models/user.js para construir, ahora si, la función de `comparePassword`.
 
-- Ahora, ¿cómo comparamos los passwords?, regresamos a models/user.js
+> Si quieres aprender más sobre los "methods" en `mongoose`, puedes leer más [aquí](https://mongoosejs.com/docs/2.7.x/docs/methods-statics.html).
 
+Observa que estamos usando dos parámetros:
+
+`candidatePassword`será el password que reciba de la llamada
+`cb` es una función. ¿Cuál? La que dictemos en la llamada. Un callback, simplemente.
+
+Al iniciar la función, usamos bcrypt para comparar el `candidatePassword` (el password de la llamada) con el de la base de datos (`this.password`).
+
+Sea cual sea el resultado, efectuamos el callback y le pasamos el error si no coincidió, ó, si coincidió, un null como primer argumento y el isMatch como segundo, que indicaría que fue un `true`.
 
 **`./server/models/user.js`**
 
@@ -507,14 +552,13 @@ userSchema.methods.comparePassword = function(candidatePassword, cb){
         bcrypt.compare(candidatePassword, this.password, function(err, isMatch){
             if(err) return cb(err)
             cb(null, isMatch)
-        })    
+        })
 }
 ```
 
-- Y listo, con esto tenemos armada la función para que podamos verificar si los passwords matchean.
-- Ahora bien, si matchean, lo que debe pasar es generar un token de identificación.
+Y listo, con esto tenemos armada una función que permite verificar si las contraseñas coinciden.
 
-- Vamos a invocar una función llamada `user.generateToken
+Como última parte, vamos a invocar una función llamada `user.generateToken`, el cual deberá inyectar el token al cliente a través de una 'cookie'.
 
 **`./server/server.js`**
 
@@ -525,13 +569,14 @@ app.post('/api/users/login', (req, res) => {
     // 1. Encuentra el correo
         User.findOne({'email': req.body.email}, (err,user) => {
             if(!user) return res.json({loginSuccess: false, message: 'Auth fallida, email no encontrado'})
-    // 2. Obtén el password y compruébalo            
+
+    // 2. Obtén el password y compruébalo
             user.comparePassword(req.body.password, (err, isMatch) => {
-              if(!isMatch) return res.json({loginSuccess: false, message: "Wrong Password"})               
-              
-    // 3. Si todo es correcto, genera un token              
+              if(!isMatch) return res.json({loginSuccess: false, message: "Wrong Password"})
+
+    // 3. Si todo es correcto, genera un token
               user.generateToken((err, user)=> {
-                    
+
                 })
             })
         })
@@ -539,7 +584,19 @@ app.post('/api/users/login', (req, res) => {
 })
 ```
 
-- Y luego, vamos a declararla en nuestros models/user.js
+- Al igual que `comparePassword`, vamos a crear una función que me permita generar el token y posteriormente inyectarlo.
+
+Para lograrlo, necesitamos la dependencia `jwt`. Una implementación para manejar JSON Web Tokens.
+
+Luego, llamamos el método `generateToken` y observa que utilizaremos una función asíncrona y pasaremos un callback como parámetro `cb`.
+
+Obtenemos el token a través de invocar jwt.sign() y le pasamos como argumento el `_id` del documento en cuestión que estamos trabajando y lo convertimos en String porque está en formato "Object_id" desde MongoDB. Como segundo argumento, pasamos un password que sólo tendrá el servidor, guardado en `process.env.SECRET`.
+
+Recuerda que para poder utilizar las variables de `process.env` es importante importar e invocar `require('dotenv').config()`.
+
+El token obtenido lo guardamos dentro del usuario respectivo a través de `this.token`
+
+Finalmente, ejecutamos `this.save` para inyectar el dato en base de datos y si hay un error retornar el callback con el error. En caso de que todo bien, retornar el callback pero con un primer argumento `null` (porque no hay error) y en segundo argumento con los datos del usuario.
 
 **`./server/models/user.js`**
 
@@ -547,62 +604,39 @@ app.post('/api/users/login', (req, res) => {
 // IMPORTACIONES
 const jwt = require(‘jsonwebtoken’)
 …
+require('dotenv').config()
+…
+
 userSchema.methods.comparePassword = function(candidatePassword, cb){
         bcrypt.compare(candidatePassword, this.password, function(err, isMatch){
             if(err) return cb(err)
             cb(null, isMatch)
-        })    
+        })
 }
 
-userSchema.methods.generateToken = function(){
-    var user = this
-    var token = jwt.sign()
-    
-    // Token = user.id + password (el password del ambiente. Sólo el servidor lo sabrá)
+userSchema.methods.generateToken = async function(cb){
+
+    const token = await jwt.sign(this._id.toHexString(),process.env.SECRET)
+
+    this.token = token
+    this.save((err, user) => {
+        if(err) return cb(err)
+        cb(null, user)
+    })
 }
+
 ```
 
-- Vamos a .env y vamos a crear el password para los tokens
+Creamos el `SECRET` en `.env`.
 
 **`./.env`**
 
 ```javascript
 DATABASE=…
-SECRET=SUPERSECRETPASSWORD123
+SECRET=PASSWORDSECRETO123
 ```
 
-- Regresamos a nuestro models/user.js
-
-**`./server/models/user.js`**
-
-```javascript
-// IMPORTACIONES
-const jwt = require('jsonwebtoken')
-…
-require('dotenv').config()
-…
-userSchema.methods.comparePassword = function(candidatePassword, cb){
-        bcrypt.compare(candidatePassword, this.password, function(err, isMatch){
-            if(err) return cb(err)
-            cb(null, isMatch)
-        })    
-}
-
-
-userSchema.methods.generateToken = function(cb){
-    var user = this
-    var token = jwt.sign(user._id.toHexString(),process.env.SECRET)
-    
-    // Token = user.id + password (el password del ambiente. Sólo el servidor lo sabrá)
-    user.token = token
-    user.save(function(err, user){
-        if(err) return cb(err)        
-        cb(null, user)
-    })
-}
-```
-
-- Listo. Ahora, regresamos a nuestro server.js
+- Listo. Terminemos la función en `server.js`:
 
 **`./server/server.js`**
 
@@ -612,18 +646,18 @@ app.post('/api/users/login', (req, res) => {
     // 1. Encuentra el correo
         User.findOne({'email': req.body.email}, (err,user) => {
             if(!user) return res.json({loginSuccess: false, message: 'Auth fallida, email no encontrado'})
-            
-    // 2. Obtén el password y compruébalo            
-    
+
+    // 2. Obtén el password y compruébalo
+
             user.comparePassword(req.body.password, (err, isMatch) => {
-              if(!isMatch) return res.json({loginSuccess: false, message: "Wrong Password"})               
-              
-    // 3. Si todo es correcto, genera un token              
-    
+              if(!isMatch) return res.json({loginSuccess: false, message: "Wrong Password"})
+
+    // 3. Si todo es correcto, genera un token
+
               user.generateToken((err, user)=> {
                     if(err) return res.status(400).send(err)
                     // Si todo bien, debemos guardar este token como un "cookie"
-                    res.cookie('w_auth', user.token).status(200).json(
+                    res.cookie('guitarshop_auth', user.token).status(200).json(
                         {loginSuccess: true}
                     )
                 })
@@ -632,7 +666,7 @@ app.post('/api/users/login', (req, res) => {
 })
 ```
 
-- Hagamos la prueba directamente en Postman, a través de raw. Le pasamos este json:
+- Hagamos la prueba directamente en Postman con la ruta. Pasamos este JSON:
 
 ```javascript
 {
@@ -641,24 +675,31 @@ app.post('/api/users/login', (req, res) => {
 }
 ```
 
-- Prueba con un login incorrecto
-- Prueba con un login correcto
-- Revisa el cookie en Postman y también en el usuario loggeado.
+- Si te retorna exitoso, todo excelente. Estamos con una sesión activa. Revisa el cookie en Postman.
+  
+- Haz una prueba con un password incorrecto para verificar que todo es correcto.
+
 - Finalmente, salvemos la ruta en nuestra carpeta de POSTMAN: `GET Login User`
 
 ***
 
 ## 1.6 - BACKEND · Creando una ruta de Autenticación
 
-- Ahora vamos a crear una ruta de autenticación. Cada vez que vamos a una url distinta, constantemente estamos revisando si el usuario posee el token correcto. Podemos revisarlo directamente en la consola. Application -> Cookie.
+- Ahora vamos a crear una ruta de autenticación. 
+  
+  Cada vez que vamos a una url distinta dentro de la misma aplicación, constantemente estaremos revisando si el usuario esta con sesión activa o no (con login).
+  
+  Podemos revisar esto directamente en la consola. Application -> Cookie.
 
-- Lo que vamos a hacer es crear esta verificación constante. No importa que URL visitas, siempre revisaremos si tiene la cookie o no.
+  Si la 'Cookie' existe, excelente, hay una sesión. Si no hay una 'Cookie' entonces pedimos realizar 'login' o registrarse como usuario.
+
+- Lo que vamos a hacer es crear esta verificación constante. No importa que URL visitas, siempre deberíamos revisar. Empezamos con la ruta:
 
 **`./server/server.js`**
 
 ```javascript
 app.get('/api/users/auth', (req, res) => {
-            
+
 })
 ```
 
@@ -671,7 +712,7 @@ Ahora, vamos a crear un middleware para hacer la revisión.
 ```javascript
 const { User } = require('./../models/user')
 let auth = (req, res, next) => {
-        
+
 }
 module.exports = { auth }
 ```
@@ -700,7 +741,7 @@ const { User } = require('./../models/user')
 let auth = (req, res, next) => {
     
 //// Token
-    let token = req.cookies.w_auth
+    let token = req.cookies.guitarshop_auth
     User.findByToken(token, (err, user)=> { 
         
     })
@@ -744,7 +785,7 @@ const { User } = require('./../models/user')
 let auth = (req, res, next) => {
     
 // TOKEN
-    let token = req.cookies.w_auth
+    let token = req.cookies.guitarshop_auth
     User.findByToken(token, (err, user)=> { 
         if(err) throw err
         if(!user) return res.json({
@@ -852,6 +893,320 @@ app.get('/api/user/logout', auth, (req, res) => {
 
 ***
 
+## Modelos de Brand
+
+- Vamos a crear un modelo llamado Brand
+- La ruta deberá ser en:
+app.post(‘/api/product/brand’, auth, (req, res) => {
+    
+})
+
+- Vamos a models/brand.js
+./server/models/brand.js
+const mongoose = require(‘mongoose’)
+const brandSchema = mongoose.Schema({
+    name: {
+        required: true,
+        type: String,
+        unique: 1,
+        maxlength: 100
+    }
+    
+})
+const Brand = mongoose.model(‘Brand’, brandSchema)
+module.exports = { Brand }
+
+- Regresamos a server.js
+
+const { Brand } = require(‘./models/brand’)
+app.post(‘/api/product/brand’, auth, (req, res) => {
+    const brand = new Brand(req.body)
+    brand.save((err, doc) => {
+        if(err) return res.json({success: false, err})
+        res.status(200).json({
+            success: true,
+            brand: doc
+        })
+    })
+})
+
+
+- Desde Postman, creamos una carpeta de GUITARSHOP para USERS y otros para BRANDS.
+- POST {{URL}}/api/product/brand
+- content-type — application/json
+Y el raw:
+{
+    “name”: “Ibanez"
+}
+Revisamos y confirmamos que se pueda crear. Recordar que como estamos haciendo un middleware con auth, es necesario que estemos loggeados para crear un Brand
+- Ahora, podrás notar que, para poder crear Brands, puede hacerlo cualquier usuario. Lo que haremos es permitir sólo a los que tengan rol de admin (role: 1) que puedan subir cambios.
+- Tendremos que crear un middleware que permitirá saber si es admin ese usuario.
+
+app.post(‘/api/product/brand’, auth, admin, (req, res) => …
+
+- Vamos a ./server/middleware/admin.js
+let admin = (req, res, next) => {
+    if(req.user.role === 0){
+        return res.send(‘You are not an admin')
+    }
+    next()
+}
+module.exports = { admin } 
+
+- Regresamos a importar el middleware:
+
+const { auth } = require(‘./middleware/admin’)
+
+
+- Volvemos a hacer el POST en Postman y nos daremos cuenta que no te va a permitir porque no eres un administrador.
+- Si hacemos el cambio de rol a un usuario, hacemos login con ese mismo y ejecutamos la llamada, entonces sí sucederá. Compruébalo.
+- Ahora, obtengamos todas las marcas. Creamos la ruta.
+app.get(‘/api/product/brands’, (req, res) => {
+    Brand.find({}, (err, brands) => { 
+        if(err) return res.status(400).send(err)
+        res.status(200).send(brands)
+    })
+})
+- Salvemos nuestra llamada HTTP en Postman y la comprobamos.
+- Como último movimiento, vamos a agregar diferentes BRANDS para llenar la base de datos. Crea un JSON en el cual incluyas estas 9 marcas de guitarras:
+    · Fender
+    · Ibanez
+    · Charvel    
+    · Jackson
+    · Gibson
+    · Cort   
+    · Schecter
+    · Reverend
+    · Ernie ball
+Luego, importa ese JSON desde terminal hacia tu base de datos:
+mongoimport --db tiendaguitarras --collection brands --file brands.json --jsonArray 
+
+—
+Woods Model and routes
+- Creamos la ruta para crear “WOOD"
+
+app.post(‘/api/product/wood’, auth, admin, ( ) => { 
+})
+
+- Creamos el modelo wood.js
+const mongoose = require(‘mongoose’)
+const woodSchema = mongoose.Schema({
+    name: {
+        required: true,
+        type: String,
+        unique: 1,
+        maxlength: 100
+    }
+})
+const Wood = mongoose.model(‘Wood’, woodSchema, “woods”)
+module.exports = { Wood }
+
+- Regresamos a nuestra server.js
+
+const { Wood } = require(‘./models/wood’)
+
+app.post(‘/api/product/wood’, auth, admin, (req,res)=>{
+    const wood = new Wood(req.body)
+    wood.save((err,doc) => {
+        if(err) return res.json({success: false, err})
+        res.status(200).json({
+            success: true,
+            wood: doc
+        })
+    })
+})
+
+app.get(‘/api/product/woods’, (req, res) => {
+    Wood.find({}, (err, woods) => {
+        if(err) return res.status(400).send(err)
+        res.status(200).send(woods)
+    }) 
+})
+
+- Probamos ambas rutas. Crea 3 woods con estos nombres:
+
+{
+    “name”: “Alder"
+}
+
+{
+    “name”: “Mahogany"
+}
+
+{
+    “name”: “Basswood"
+}
+- Recuerda guardar tus rutas en las carpetas de POSTMAN
+——
+Adding products
+- Ahora vamos a crear los productos de la tienda electrónica.
+- Vamos a crear el modelo product.js
+- Dentro, vamos a crear:
+const mongoose = require(‘mongoose’)
+const Schema = mongoose.Schema;
+const productSchema = mongoose.Schema({
+    name: {
+        required: true,
+        type: String,
+        unique: 1,
+        maxlength: 100
+    },
+    description: {
+        required: true,
+        type: String,
+        maxlength: 100000
+    },
+    price: {
+        required: true,
+        type: Number,
+        maxlength: 255
+    },
+    brand: {
+        type: Schema.Types.ObjectId,
+        ref: ‘Brand’,
+        required: true
+    },
+    shipping: {
+        required: true,
+        type: Boolean
+    },
+    available: {
+        required: true,
+        type: Boolean
+    },
+    wood: {
+        type: Schema.Types.ObjectId,
+        ref: ‘Wood’,
+        required: true   
+    },
+    frets: {
+        required: true,
+        type: Number
+    },
+    sold: {
+        type: Number,
+        maxlength: 100,
+        default: 0
+    },
+    publish: {
+        required: true,
+        type: Boolean
+    },
+    images: {
+        type: Array,
+        default: []
+    }
+}, {timestamps: true})
+
+const Product = mongoose.model(“Product”, productSchema, “products”)
+module.exports = { Product }
+
+
+- Observar que en Brand, vamos a realizar una relación. El producto contiene el Brand. Si llegamos a cambiar el Brand a futuro, no habría problema en Producto porque aceptaría los cambios que sucediesen ahí.
+- Otra cosa a notar es que colocamos en la parte superior “mongoose.Schema”.
+- El ref significa la colección que nosotros vamos a jalar. El modelo en singular, en String.
+- El timestamps
+
+- Regresamos a server.js y creamos la ruta de creación del producto.
+const { Product } = require(‘./models/product’)
+app.post(‘/api/product/article’, auth, admin, (req, res) => {
+        const product = new Product(req.body)
+        
+        product.save((err, doc) => {
+            if(err) return res.json({success: false, err})
+            res.status(200).json({
+                success: true,
+                article: doc
+            })
+    })
+})
+- Revisamos en POSTMAN la url y le pasamos este producto de ejemplo:
+* Para el brand y el wood, necesitas pasar el ID que tenemos como brand para relacionarlo.
+{
+    “name”: “A22402”,
+    “description”: “Gran guitarra”,
+    “price”: “2000”,
+    “brand”: “5b2c11d2d37177aedfd6d962”,
+    “shipping”: true,
+    “available”: true,
+    “wood”: “5b2c1264d37177aedfd6d964”,
+    “frets”: 24,
+    “publish”: true
+}
+Lo revisamos y debes obtener la respuesta. Observa tambiénq ue ya te aparece createdAt y updatedAt
+Y en Brand y Wood te aparece, dentro de MongoDB Compass, “ObjectId(“...")"
+- Recuerda salvar tu HTTP Request de Postman.
+- Crea 5 productos con esta información:
+
+——
+Getting products by ID
+- Vamos a obtener los productos a través del ID. Creamos la ruta
+Quiero ser capaz de que busque un ID o muchos IDs.querystring
+1 id
+/api/product/article?id=HSKKKSKS&type=array
+más de 1 id
+/api/product/article?id=HSKKKSKS,akdjfañjf,kdjfalkñfja&type=dhjfljakhdf
+Si el type está igualado a array, significa que debe buscar un arreglo de productos. Si tiene “single”, entonces estamos buscando un single id.
+app.get(‘/api/product/articles_by_id’, ( req, res ) => {
+    let type = req.query.type
+    let items = req.query.id
+    
+    if(type === “array”){
+        let ids = req.query.id.split(‘,’)
+        items = []
+        items = ids.map(item => { 
+            // Convertirlos en ObjectId de Mongoose
+            return mongoose.Types.ObjectId(item)
+        })
+    }
+    Product.
+    find({ ‘_id': {$in:items}})
+    .populate(‘brand’)
+    .populate(‘wood’)
+    .exec((err, docs)=> {
+        return res.status(200).send(docs)
+    })
+})
+
+- Vamos a Postman para probar la ruta. Recuerda pasar:
+{{url}}/api/product/articles_by_id?id=2345678,761372893,y1232131&type=array
+Lo que regresa es un arreglo de objectos. Cada objeto es un documento.
+- Observa que estamos pasando un .populate. Lo que hace es que te permite obtener el desglose de Brand y Wood y no sólo el ObjectId. Con esto ya tenemos una relación mostrada en MongoDB Compass.
+——
+Getting product by orders and by arrivals
+- Creamos la ruta
+// BY ARRIVAL (Más nuevas)
+/articles?sortBy=createdAt&order=desc&limit=4
+// BY SELL (Más Ventas)
+/articles?sortBy=sold&order=desc&limit=4
+app.get(‘/api/product/articles’, (req, res) => {
+    let order = req.query.order ? req.query.order : ‘asc’
+    let sortBy = req.query.sortBy ? req.query.sortBy : ‘_id’
+    let limit = req.query.limit ? parseInt(req.query.limit) : 100
+    
+    Product
+    .find()
+    .populate(‘brand’)
+    .populate(‘wood’)    
+    .sort([[sortBy, order]])
+    .limit(limit)
+    .exec((err, articles) => {
+        if(err) return res.status(400).send(err)
+        res.send(articles)
+    })
+})
+
+
+
+
+
+
+
+
+***
+
+
+
 
 ## 2. FRONTEND (Authentication)
 
@@ -864,3 +1219,4 @@ app.get('/api/user/logout', auth, (req, res) => {
 
 
 
+****
