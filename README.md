@@ -213,13 +213,14 @@ mongoose.connect(process.env.DATABASE, { useNewUrlParser: true }, (err) => {
 - Utiliza un middleware para convertir los datos que recibamos del cliente en Strings, arreglos o en JSON.
 
 **`./server/server.js`**
+
 ```javascript
 ...
 app.use(express.urlencoded({extended: true}))
 app.use(express.json())
 ```
 
-- Utiliza un middleware para la inyección de cookies en la petición de datos desde el cliente.
+- Agregaremos uno más para gestionar las 'cookies' en la petición de datos desde el cliente.
 
 **`./server/server.js`**
 
@@ -522,10 +523,10 @@ app.post('/api/users/login', (req, res) => {
             if(!user) return res.json({loginSuccess: false, message: 'Auth fallida, email no encontrado'})
     // 2. Obtén el password y compruébalo
             user.comparePassword(req.body.password, (err, isMatch) => {
-              if(!isMatch) return res.json({loginSuccess: false, message: "Password erróneo"})               
-              
+              if(!isMatch) return res.json({loginSuccess: false, message: "Password erróneo"})
+
     // 3. Si todo es correcto, genera un token
-    
+
             })
         })
 })
@@ -703,54 +704,63 @@ app.get('/api/users/auth', (req, res) => {
 })
 ```
 
-Ahora, vamos a crear un middleware para hacer la revisión.
-
-- Creamos una carpeta llamada middleware y dentro crearemos un archivo llamado auth.js
+- Ahora, vamos a crear un middleware para hacer la revisión. Creamos una carpeta llamada `middleware` y dentro crearemos un archivo llamado auth.js
 
 **`./server/middleware/auth.js`**
 
 ```javascript
+
 const { User } = require('./../models/user')
 let auth = (req, res, next) => {
 
 }
 module.exports = { auth }
+
 ```
 
-- Regresamos a server.js. Para preparar el auth.
+- Regresamos a `server.js`. Importamos `auth` y lo asignamos dentro de la ruta. Observa que se pone entre `'/api/users/auth'` y `(req,res) => ...`.
+  
+  Esto significa que una vez tocada la ruta, debería pasar siempre por `auth` primero.
 
 **`./server/server.js`**
 
 ```javascript
-// 2. MIDDLEWARES
+
 const { auth } = require('./middleware/auth')
 
 …
+
 app.get('/api/users/auth', auth, (req, res) => {
-            
+
 })
 ```
 
+- Una vez colocado esto, vamos nuevamente a `middleware/auth`.
+  
+  El objetivo es armar la función para obtener el token que viene de la petición del cliente.
 
-- Volvemos a middlewares/auth. Preparamos para buscar por token la función auth.
+  Una vez capturado, vamos a realizar una búsqueda por token en base de datos. Invocaremos una función (aún no declarada) llamada `.findByToken()`. Debería retornar un usuario.
 
 **`./server/middleware/auth.js`**
+
 ```javascript
 
 const { User } = require('./../models/user')
-let auth = (req, res, next) => {
-    
-//// Token
-    let token = req.cookies.guitarshop_auth
-    User.findByToken(token, (err, user)=> { 
-        
-    })
 
+let auth = (req, res, next) => {
+
+    let token = req.cookies.guitarshop_auth
+    User.findByToken(token, (err, user)=> {
+
+    })
 }
+
 module.exports = { auth }
 ```
 
-- Vamos al models/user.js para crear la función findByToken (porque no existe)
+- Ya hecho esto, declaramos la función de `.findByToken()`.
+  
+  Regresamos a `user.js` y observemos las diferentes sentencias.
 
 **`./server/models/user.js`**
 
@@ -759,23 +769,19 @@ module.exports = { auth }
 
 userSchema.statics.findByToken = function(token,cb){
     var user = this
-    
-    // Decodificamos el Token para checar si el mismo está ok
-    
+
     jwt.verify(token, process.env.SECRET, function(err, decode){
         user.findOne("_id": decode, “token”: token, function(err, user){
             if (err) cb(error)
             cb(null, user)
-        }         
+        }
     })
 }
 
-const User = mongoose.model...
 ...
 ```
 
-
-- Regresamos a ./middlewares/auth
+- Regresamos a nuestro servidor para ejecutar `.findByToken`.
 
 **`./server/server.js`**
 
@@ -783,9 +789,9 @@ const User = mongoose.model...
 
 const { User } = require('./../models/user')
 let auth = (req, res, next) => {
-    
-// TOKEN
+
     let token = req.cookies.guitarshop_auth
+
     User.findByToken(token, (err, user)=> { 
         if(err) throw err
         if(!user) return res.json({
@@ -801,7 +807,7 @@ let auth = (req, res, next) => {
 module.exports = { auth }
 ```
 
-Una vez que completamos y damos next( ), avanzamos al server.js. Ya pasó por el middleware, podemos avanzar con nuestra ruta.
+Una vez que completamos y damos next(), avanzamos al server.js. Ya pasó por el middleware, podemos avanzar con nuestra ruta.
 
 **`./server/server.js`**
 
@@ -813,7 +819,7 @@ const { auth } = require('./middleware/auth')
 app.get('/api/users/auth', auth, (req, res) => {
     res.status(200).json({
         user: req.user
-        
+
     })
 })
 ```
@@ -821,6 +827,7 @@ app.get('/api/users/auth', auth, (req, res) => {
 - Vamos a Postman para validar la llamada. Deberías recibir el usuario como tal.
 
 GET  {{url}}/api/users/auth
+
 ```javascript
 {
   "user": {
@@ -869,7 +876,7 @@ app.post( …
 ## 1.7 - BACKEND · Cerrando sesión de "users"
 
 
-- Hacemos la ruta y el auth.
+- Hacemos la ruta y recuerda pasar `auth` como middleware.
 
 **`./server/server.js`**
 
