@@ -114,13 +114,13 @@ yarn-error.log*
 
 - Al finalizar la iteración, deberías tener esta estructura de carpetas:
 
-```javascript
-|--client
-|--server
-|   |--server.js
+```shell
+|-- client
+|-- server
+|   |-- server.js
 |  
-|--.gitignore
-|--package.json
+|-- .gitignore
+|-- package.json
 ```
 
 ## 0.2 - Instalación de dependencias BACKEND
