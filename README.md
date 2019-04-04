@@ -164,7 +164,7 @@ Verifica que estén colocadas en tu `package.json`, dentro de tus dependencias.
   
   app.listen(port, () => {
     console.log(`Servidor corriendo en el puerto ${port}`)
-  }
+  })
   
 ```
 
@@ -178,11 +178,15 @@ Durante todo este alcance, trabajaremos dentro de la carpeta "server". Crearemos
 
 - Crea un archivo .env en la raiz del proyecto y dentro agrega la línea:
 
+**`./.env`**
+
 ```javascript
 DATABASE=mongodb://localhost:27017/tiendaguitarras
 ```
 
 - Para poder utilizar .env, debes de agregar esta línea en el archivo de `server.js`:
+
+**`./server/server.js`**
 
 ```javascript
 ...
@@ -193,13 +197,19 @@ require('dotenv').config()
 
 - Conéctate a tu base de datos de MongoDB a través de mongoose, bajo el nombre de "tiendaguitarras" y utilizando la variable de `env` como la dirección de conexión a la base de datos.
 
+**`./server/server.js`**
+
 ```javascript
 ...
-mongoose.connect(process.env.DATABASE)
+mongoose.connect(process.env.DATABASE, { useNewUrlParser: true }, (err) => {
+    if(err) return err
+    console.log("Conectado a MongoDB")
+})
 ```
 
 - Utiliza un middleware para convertir los datos que recibamos del cliente en Strings, arreglos o en JSON.
 
+**`./server/server.js`**
 ```javascript
 ...
 app.use(express.urlencoded({extended: true}))
@@ -208,12 +218,16 @@ app.use(express.json())
 
 - Utiliza un middleware para la inyección de cookies en la petición de datos desde el cliente.
 
+**`./server/server.js`**
+
 ```javascript
 ...
 app.use(cookieParser())
 ```
 
 Tu código final en este alcance debería ser:
+
+**`./server/server.js`**
 
 ```javascript
 const express = require('express')
@@ -224,7 +238,10 @@ const mongoose = require('mongoose')
 
 require('dotenv').config()
 
-mongoose.connect(process.env.DATABASE)
+mongoose.connect(process.env.DATABASE, { useNewUrlParser: true }, , (err) => {
+    if(err) return err
+    console.log("Conectado a MongoDB")
+})
 
 app.use(express.urlencoded({extended: true}))
 app.use(express.json())
@@ -238,36 +255,30 @@ app.listen(port, () => {
 
 ```
 
+***
+
 ## 1.2 - BACKEND · Creando el modelo "User"
 
-- Crea la ruta "https://localhost:3002/api/users" bajo el método POST. Por ahora, que sólo devuelva un statuso 200.
+En este alcance, crearemos el modelo "User", el cual estará referido a los usuarios de nuestra aplicación.
 
-- Crea un modelo "User" que contenga:
+- Crea el apartado de rutas “USERS” en `server.js` 
 
-  - email (String)
-  - password (String)
-  - nombre (String)
-  - apellido (String)
-  - carrito (array)
-  - historial (Array)
-  - rol (Number)
-  - token (String)
+**`./server/server.js`**
 
-- Impórtalo en tu archivo de `server.js`
-
-
-- Abrir postman
-- Crear la ruta “USERS” en server.js
-app.post(‘/api/users/register’, ( )=> {
-    res.status(200)
+```javascript
+app.post('/api/users/register', (req, res)=> {
+    res.status(200).send('Funciona la conexión')
 })
+```
 
+- Crea tu carpeta de `models` y luego agrega `user.js` dentro de la misma. Observa las diferentes propiedades que agregaremos dentro del "Schema" y sus diferentes validaciones.
 
-- Crear carpeta de models y luego agregar un “User.js”
-    user.js
+**`./server/models/user.js`**
 
-models/user.js
-    const mongoose = require(‘mongoose’)
+```javascript
+
+    const mongoose = require('mongoose')
+    
     const userSchema = mongoose.Schema({
         email: {
             type: String,
@@ -299,7 +310,7 @@ models/user.js
             default:[]
         },
         role: {
-            type: Number
+            type: Number,
             default: 0
         },
         token: {
@@ -307,24 +318,39 @@ models/user.js
         }
     })
     
-    const User = mongoose.model(‘User’, userSchema)
+    const User = mongoose.model('User', userSchema, "users")
+    
     module.exports = { User }
+    
+```
 
-- Entramos a server.js
-const  { User } = require(‘./models/user’)
+- Una vez armado el modelo, entramos a `server.js` y lo importamos.
 
+**`./server/server.js`**
 
+```javascript
 
+const  { User } = require('./models/user')
+
+```
+
+***
 
 ## 1.3 - BACKEND · Registrando "users"
 
-Registrando usuarios
-
 - Entramos a Postman. Creamos una colección llamada GUITARSHOP.
+
 - Creamos una variable en “Settings” y agregamos un “Environment”. 
-- Creamos un Key” llamado URL, y el nombre: http://localhost:3002. Con la intención de que cada vez que hagamos un request, no tengamos que repetirlo
-- Revisamos para hacer la llamada todo lo que necesitamos. Vamos a server.js en el área de USERS y rutas
-app.post(‘/api/users/register’, (req, res) => {
+
+- Creamos un "Key" llamado URL, y el nombre: `http://localhost:3002`. Todo esto con la intención de que cada vez que hagamos un request, no tengamos que reptir constantemente la URL. Confirmamos haciendo una llamada HTTP nuevamente.
+
+- Vamos a `server.js`, en las rutas de `USERS`:
+
+**`./server/server.js`**
+
+```javascript
+
+app.post('/api/users/register', (req, res) => {
     const user = new User(req.body)
     user.save((err, doc) => {
         if(err) return res. json({success: false, err})
@@ -334,39 +360,46 @@ app.post(‘/api/users/register’, (req, res) => {
         })
     })
 })
-Con esto, creamos un usuario.
-- Revisamos que se pueda crear. 
-- Ponemos en POSTMAN, una llamada POST. Cuidar el Headers con Content-Type y application/json.
-- Luego, en BODY, pasamos un objeto JSON, en raw:
+
+```
+
+- Ponemos en POSTMAN, una llamada POST. Cuidar el HEADERS agregando el correcto `Content-Type` y `application/json`.
+
+- Luego, en BODY, pasamos un objeto JSON, con la opción 'raw':
+
+```javascript
 {
-    “email”: “mikeœgmail.com”,
-    “password”: “password123”,
-    “name”: “Mike”,
-    “lastname”: “Nieva"
+    "email": "mikenieva@gmail.com",
+    "password": "password123",
+    "name": "Mike",
+    "lastname": "Nieva"
 }
+```
 
-Con esto, obtenenemos un tenemos una respuesta, que indica que tuvimos éxito.
-Revisar que tenemos un _id que pertenece a MongoDB.
-- Ahora, el password deberíamos hashearlo o encriptarlo. Lo haremos en la siguiente parte.
+Con esto, creamos un usuario y confirmamos que aparece el documento en la base de datos. Observa que tenemos un `_id` que pertenece a MongoDB.
+
 - Revisamos las validaciones del Backend, si enviamos el mismo mail.
-- Guardamos nuestra llamada HTTP en Postman. (POST Register User)
-——
 
+- Guardamos nuestra llamada HTTP en Postman. (POST Register User)
+
+***
 
 ## 1.4 - BACKEND · Encriptando "passwords"
 
-Hashing passwords
-- Lo que vamos a hacer antes de guardar el password en base de datos, es encriptarlo.
-- Vamos al modelo, de user.js
+- Ahora, el password deberíamos hashearlo o encriptarlo. Lo haremos en la siguiente parte. Lo que debemos hacer antes de guardar el password en base de datos es encriptarlo, para mantener la seguridad del mismo.
 
+- Agregamos en el modelo de User:
+
+**`./server/models/user.js`**
+```javascript
 // IMPORTACIONES
 ...
-const bcrypt = require(‘bcrypt’)
-CONST SALT_I = 10
+const bcrypt = require('bcrypt')
+const SALT_I = 10
 // SCHEMA
 ...
 // MIDDLEWARE
-userSchema.pre(’save’, function(next){
+userSchema.pre('save', function(next){
     var user = this
     
     bcrypt.genSalt(SALT_I, function(err, salt){
@@ -378,15 +411,18 @@ userSchema.pre(’save’, function(next){
         })
     })
 })
-
+```
 
 - Para revisar que funciona, generemos un usuario nuevo y ahora deberemos ver el password “hasheado”.
 
-Ahora, para evitar que si, más adelante, el usuario cambia su nombre y se vuelva a “hashear” el password porque salvó, tenemos que agregar un par de líneas más.
+- Ahora, esta línea, no importando si se crea o edita la información del usuario, volverá a encriptar el password en cada llamada. Para que suceda sólamente cuando creamos el usuario o modifiquemos el password, agregamos:
 
-userSchema.pre(’save’, function(next){
+**`./server/models/user.js`**
+
+```javascript
+userSchema.pre('save', function(next){
     var user = this
-    if(user.isModified(‘password')){
+    if(user.isModified('password')){
         bcrypt.genSalt(SALT_I, function(err, salt){
             if(err) return next(err)
             bcrypt.hash(user.password, salt, function(err, hash){
@@ -399,105 +435,120 @@ userSchema.pre(’save’, function(next){
         next()
     }
 })
-
+```
 
 
 - Revisamos en POSTMAN que sigue registrando sin problemas los usuarios
 
-
+***
 
 ## 1.5 - BACKEND · Iniciando sesión con "users" y creando "tokens"
 
-LOGIN USERS AND CREATING TOKENS
-
 - Vamos a hacer una ruta POST en las rutas USER
-…
 
-app.post(‘/api/users/login’, (req, res) => {
-    // Find the email
-        User.findOne({‘email’: req.body.email}, (err,user) => {
-            if(!user) return res.json({loginSuccess: false, message: ‘Auth failed, email not found’})
+**`./server/server.js`**
+```javascript
+…
+app.post('/api/users/login', (req, res) => {
+    // 1. Encuentra el correo
+        User.findOne({'email': req.body.email}, (err,user) => {
+            if(!user) return res.json({loginSuccess: false, message: 'Auth fallida, email no encontrado'})
             
         })
-    // Grab the password and check the password
+    // 2. Obtén el password y compruébalo
 
-    // If everything is correct, we generate a token
+    // 3. Si todo es correcto, genera un token
 })
 
+```
 - A partir de aquí, necesitamos bcrypt para decriptar el password. Iremos a los models, en user.js, para crear un método
 que me permita extraerlo.
 
 
-models/user.js
+**`./server/models/user.js`**
+```javascript
 …
 userSchema.methods.comparePassword = function(candidatePassword, cb){
         
 }
+```
 
 
 - Vamos al servidor nuevamente...
 
-…
+**`./server/server.js`**
 
-app.post(‘/api/users/login’, (req, res) => {
-    // Find the email
-        User.findOne({‘email’: req.body.email}, (err,user) => {
-            if(!user) return res.json({loginSuccess: false, message: ‘Auth failed, email not found’})
-            
+```javascript
+…
+app.post('/api/users/login', (req, res) => {
+    // 1. Encuentra el correo
+        User.findOne({'email': req.body.email}, (err,user) => {
+            if(!user) return res.json({loginSuccess: false, message: 'Auth fallida, email no encontrado'})
+    // 2. Obtén el password y compruébalo
             user.comparePassword(req.body.password, (err, isMatch) => {
-              if(!isMatch) return res.json({loginSuccess: false, message: “Wrong Password"})               
+              if(!isMatch) return res.json({loginSuccess: false, message: "Password erróneo"})               
               
-              //
+    // 3. Si todo es correcto, genera un token
+    
             })
         })
-    // Grab the password and check the password
-
-    // If everything is correct, we generate a token
 })
+```
+
 
 - Ahora, ¿cómo comparamos los passwords?, regresamos a models/user.js
 
 
-models/user.js
+**`./server/models/user.js`**
+
+```javascript
 …
 userSchema.methods.comparePassword = function(candidatePassword, cb){
-        bcrypt.compare(candidatePassword, this.password, this.password, function(err, isMatch){
+        bcrypt.compare(candidatePassword, this.password, function(err, isMatch){
             if(err) return cb(err)
             cb(null, isMatch)
         })    
 }
+```
 
-
-- Y listo, con esto tenermos armada la función para que podamos verificar si los passwords matchean.
+- Y listo, con esto tenemos armada la función para que podamos verificar si los passwords matchean.
 - Ahora bien, si matchean, lo que debe pasar es generar un token de identificación.
 
-- Vamos a invocar una función llamada user.generateToken
+- Vamos a invocar una función llamada `user.generateToken
+
+**`./server/server.js`**
+
+```javascript
 …
 
-app.post(‘/api/users/login’, (req, res) => {
-    // Find the email
-        User.findOne({‘email’: req.body.email}, (err,user) => {
-            if(!user) return res.json({loginSuccess: false, message: ‘Auth failed, email not found’})
-            
+app.post('/api/users/login', (req, res) => {
+    // 1. Encuentra el correo
+        User.findOne({'email': req.body.email}, (err,user) => {
+            if(!user) return res.json({loginSuccess: false, message: 'Auth fallida, email no encontrado'})
+    // 2. Obtén el password y compruébalo            
             user.comparePassword(req.body.password, (err, isMatch) => {
-              if(!isMatch) return res.json({loginSuccess: false, message: “Wrong Password"})               
+              if(!isMatch) return res.json({loginSuccess: false, message: "Wrong Password"})               
+              
+    // 3. Si todo es correcto, genera un token              
               user.generateToken((err, user)=> {
                     
                 })
             })
         })
-    // Grab the password and check the password
 
-    // If everything is correct, we generate a token
 })
+```
 
 - Y luego, vamos a declararla en nuestros models/user.js
-models/user.js
+
+**`./server/models/user.js`**
+
+```javascript
 // IMPORTACIONES
 const jwt = require(‘jsonwebtoken’)
 …
 userSchema.methods.comparePassword = function(candidatePassword, cb){
-        bcrypt.compare(candidatePassword, this.password, this.password, function(err, isMatch){
+        bcrypt.compare(candidatePassword, this.password, function(err, isMatch){
             if(err) return cb(err)
             cb(null, isMatch)
         })    
@@ -507,115 +558,145 @@ userSchema.methods.generateToken = function(){
     var user = this
     var token = jwt.sign()
     
-    // user.id + password (the password of environment, the server only know)
+    // Token = user.id + password (el password del ambiente. Sólo el servidor lo sabrá)
 }
-
+```
 
 - Vamos a .env y vamos a crear el password para los tokens
-.env
+
+**`./.env`**
+
+```javascript
 DATABASE=…
 SECRET=SUPERSECRETPASSWORD123
+```
 
 - Regresamos a nuestro models/user.js
-models/user.js
+
+**`./server/models/user.js`**
+
+```javascript
 // IMPORTACIONES
-const jwt = require(‘jsonwebtoken’)
+const jwt = require('jsonwebtoken')
 …
-require(‘dotenv’).config()
+require('dotenv').config()
 …
 userSchema.methods.comparePassword = function(candidatePassword, cb){
-        bcrypt.compare(candidatePassword, this.password, this.password, function(err, isMatch){
+        bcrypt.compare(candidatePassword, this.password, function(err, isMatch){
             if(err) return cb(err)
             cb(null, isMatch)
         })    
 }
 
+
 userSchema.methods.generateToken = function(cb){
     var user = this
     var token = jwt.sign(user._id.toHexString(),process.env.SECRET)
     
-    // token = user.id + password (the password of environment, the server only know)
+    // Token = user.id + password (el password del ambiente. Sólo el servidor lo sabrá)
     user.token = token
     user.save(function(err, user){
         if(err) return cb(err)        
         cb(null, user)
     })
 }
+```
 
 - Listo. Ahora, regresamos a nuestro server.js
 
-…
+**`./server/server.js`**
 
-app.post(‘/api/users/login’, (req, res) => {
-    // Find the email
-        User.findOne({‘email’: req.body.email}, (err,user) => {
-            if(!user) return res.json({loginSuccess: false, message: ‘Auth failed, email not found’})
-    // Grab the password and check the password
+```javascript
+…
+app.post('/api/users/login', (req, res) => {
+    // 1. Encuentra el correo
+        User.findOne({'email': req.body.email}, (err,user) => {
+            if(!user) return res.json({loginSuccess: false, message: 'Auth fallida, email no encontrado'})
+            
+    // 2. Obtén el password y compruébalo            
+    
             user.comparePassword(req.body.password, (err, isMatch) => {
-              if(!isMatch) return res.json({loginSuccess: false, message: “Wrong Password"})               
-    // If everything is correct, we generate a token
+              if(!isMatch) return res.json({loginSuccess: false, message: "Wrong Password"})               
+              
+    // 3. Si todo es correcto, genera un token              
+    
               user.generateToken((err, user)=> {
                     if(err) return res.status(400).send(err)
-                    // Si todo bien, debemos guardar este token como un “cookie”
-                    res.cookie(‘w_auth’, user.token).status(200).json(
+                    // Si todo bien, debemos guardar este token como un "cookie"
+                    res.cookie('w_auth', user.token).status(200).json(
                         {loginSuccess: true}
                     )
                 })
             })
         })
-
-
-
 })
+```
 
-- Hagamos la prueba directamente en Postman, a través de raw. Le pasamos 
+- Hagamos la prueba directamente en Postman, a través de raw. Le pasamos este json:
 
+```javascript
 {
-    “email”: “mike@gmail.com”
-    “password”: “password123"
+    "email": "mike@gmail.com",
+    "password": "password123"
 }
+```
 
 - Prueba con un login incorrecto
 - Prueba con un login correcto
 - Revisa el cookie en Postman y también en el usuario loggeado.
-- Finalmente, salvemos la ruta en nuestra carpeta de POSTMAN 
-GET Login User
+- Finalmente, salvemos la ruta en nuestra carpeta de POSTMAN: `GET Login User`
 
-
+***
 
 ## 1.6 - BACKEND · Creando una ruta de Autenticación
 
 - Ahora vamos a crear una ruta de autenticación. Cada vez que vamos a una url distinta, constantemente estamos revisando si el usuario posee el token correcto. Podemos revisarlo directamente en la consola. Application -> Cookie.
-- Lo que vamos a hacer es crear esta verificación constante. No importa que URL visitas, siempre revisaremos si tiene la cookie o no.
-./server.js
 
-app.get(‘/api/users/auth’, (req, res) => {
+- Lo que vamos a hacer es crear esta verificación constante. No importa que URL visitas, siempre revisaremos si tiene la cookie o no.
+
+**`./server/server.js`**
+
+```javascript
+app.get('/api/users/auth', (req, res) => {
             
 })
+```
 
 Ahora, vamos a crear un middleware para hacer la revisión.
+
 - Creamos una carpeta llamada middleware y dentro crearemos un archivo llamado auth.js
 
-const { User } = require(‘./../models/user’)
+**`./server/middleware/auth.js`**
+
+```javascript
+const { User } = require('./../models/user')
 let auth = (req, res, next) => {
         
 }
 module.exports = { auth }
+```
 
-- Regresamos a server.js. Para preparar el auth
+- Regresamos a server.js. Para preparar el auth.
 
+**`./server/server.js`**
+
+```javascript
 // 2. MIDDLEWARES
-const { auth } = require(‘./middleware/auth’)
+const { auth } = require('./middleware/auth')
 
 …
-app.get(‘/api/users/auth’, auth, (req, res) => {
+app.get('/api/users/auth', auth, (req, res) => {
             
 })
-
+```
 
 
 - Volvemos a middlewares/auth. Preparamos para buscar por token la función auth.
-const { User } = require(‘./../models/user’)
+
+**`./server/middleware/auth.js`**
+```javascript
+
+const { User } = require('./../models/user')
 let auth = (req, res, next) => {
     
 //// Token
@@ -626,18 +707,22 @@ let auth = (req, res, next) => {
 
 }
 module.exports = { auth }
-
+```
 
 - Vamos al models/user.js para crear la función findByToken (porque no existe)
 
+**`./server/models/user.js`**
 
+```javascript
 …
 
 userSchema.statics.findByToken = function(token,cb){
     var user = this
-    // DECODE THE TOKEN TO CHECK IF THE TOKEN IS OK
+    
+    // Decodificamos el Token para checar si el mismo está ok
+    
     jwt.verify(token, process.env.SECRET, function(err, decode){
-        user.findOne(“_id”: decode, “token”: token, function(err, user){
+        user.findOne("_id": decode, “token”: token, function(err, user){
             if (err) cb(error)
             cb(null, user)
         }         
@@ -646,13 +731,19 @@ userSchema.statics.findByToken = function(token,cb){
 
 const User = mongoose.model...
 ...
+```
 
-Regresamos a ./middlewares/auth
 
-const { User } = require(‘./../models/user’)
+- Regresamos a ./middlewares/auth
+
+**`./server/server.js`**
+
+```javascript
+
+const { User } = require('./../models/user')
 let auth = (req, res, next) => {
     
-//// Token
+// TOKEN
     let token = req.cookies.w_auth
     User.findByToken(token, (err, user)=> { 
         if(err) throw err
@@ -667,39 +758,47 @@ let auth = (req, res, next) => {
 
 }
 module.exports = { auth }
+```
 
 Una vez que completamos y damos next( ), avanzamos al server.js. Ya pasó por el middleware, podemos avanzar con nuestra ruta.
 
+**`./server/server.js`**
 
+```javascript
 // 2. MIDDLEWARES
-const { auth } = require(‘./middleware/auth’)
+const { auth } = require('./middleware/auth')
 
 …
-app.get(‘/api/users/auth’, auth, (req, res) => {
+app.get('/api/users/auth', auth, (req, res) => {
     res.status(200).json({
         user: req.user
         
     })
 })
+```
 
 - Vamos a Postman para validar la llamada. Deberías recibir el usuario como tal.
+
 GET  {{url}}/api/users/auth
-
-=> {
-        "user”: {
-                “cart”: []
-                ...
-            }
+```javascript
+{
+  "user": {
+    "cart": []
+    ...
     }
+}
+```
 
-- Ahora, no quiero retornar toda la información. No es necesario. Sólo algunos datos. Para ello, vamos a cambiar:
-Y hacemos un pequeño cambio en la ruta del register. No es necesario pasar toda la data. Quitamos esa línea
+- Finalmente, terminamos la ruta y hacemos un pequeño cambio en la ruta del register. No es necesario pasar toda la data.
 
+**`./server/server.js`**
+
+```javascript
 // 2. MIDDLEWARES
 const { auth } = require(‘./middleware/auth’)
 
 …
-app.get(‘/api/users/auth’, auth, (req, res) => {
+app.get('/api/users/auth', auth, (req, res) => {
     res.status(200).json({
         isAdmin: req.user.role === 0 ? false : true,
         isAuth: true,
@@ -721,17 +820,23 @@ app.post( …
 
 - Guarda tu ruta en POSTMAN. -> AUTH
 
+```
 
+***
 
 
 ## 1.7 - BACKEND · Cerrando sesión de "users"
 
 
 - Hacemos la ruta y el auth.
-app.get(‘/api/user/logout’, auth, (req, res) => {
+
+**`./server/server.js`**
+
+```javascript
+app.get('/api/user/logout', auth, (req, res) => {
     User.findOneAndUpdate(
         {_id: req.user._id},
-        {token: ‘’},
+        {token: ''},
         (err, doc) => {
             if(err) return res.json({success: false, err})
             return res.status(200).json({
@@ -740,14 +845,10 @@ app.get(‘/api/user/logout’, auth, (req, res) => {
         }
     )
 })
+```
 
 - Y eso es todo. Borramos el token cuando tocamos esa ruta.
 - Y recuerda guardar tu ruta en POSTMAN.
-
-
-
-
-
 
 ***
 
