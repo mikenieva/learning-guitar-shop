@@ -783,7 +783,7 @@ userSchema.statics.findByToken = function(token,cb){
 
 - Regresamos a nuestro servidor para ejecutar `.findByToken`.
 
-**`./server/server.js`**
+**`./server/middleware/auth.js`**
 
 ```javascript
 
