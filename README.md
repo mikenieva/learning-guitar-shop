@@ -978,7 +978,7 @@ module.exports = { admin }
 **`./server/server.js`**
 
 ```javascript
-const { auth } = require('./middleware/admin')
+const { admin } = require('./middleware/admin')
 ```
 
 - Volvemos a hacer el POST en Postman y nos daremos cuenta que no te va a permitir porque no eres un administrador.
@@ -1206,13 +1206,13 @@ app.post(‘/api/product/article’, auth, admin, (req, res) => {
 }
 ```
 
-- Lo revisamos y debes obtener la respuesta. Observa tambiénq que ya te aparece "createdAt" y "updatedAt"
+- Lo revisamos y debes obtener una respuesta de éxito. Observa también que ya te aparece "createdAt" y "updatedAt" en el documento, que indica la fecha de creación y actualización.
 
-- Y en Brand y Wood te aparece, dentro de MongoDB Compass, “ObjectId(“...")"
+- Y en "Brand" y "Wood" te aparece, dentro de MongoDB Compass, "ObjectId("...")". Significa que la relación sucedió y se vinculó.
 
 - Recuerda salvar tu HTTP Request de Postman.
 
-- Crea 5 productos, mezclando el brand y el wood.
+- Crea 5 productos, mezclando el "Brand" y el "Wood".
 
 ***
 
