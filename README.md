@@ -1192,6 +1192,7 @@ app.post(‘/api/product/article’, auth, admin, (req, res) => {
 
   - **DETALLE IMPORTANTE:**  Observa el brand y el wood. Debemos de pasarle el "ObjectId" que tenemos con un documento "brand" para relacionarlo. También con "wood".
 
+```javascript
 {
     "name": "A22402",
     "description": "Gran guitarra",
@@ -1203,6 +1204,7 @@ app.post(‘/api/product/article’, auth, admin, (req, res) => {
     "frets": 24,
     "publish": true
 }
+```
 
 - Lo revisamos y debes obtener la respuesta. Observa tambiénq que ya te aparece "createdAt" y "updatedAt"
 
