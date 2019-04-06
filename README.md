@@ -25,7 +25,7 @@
   - [Alcance 1.9 - BACKEND · Creando el modelo "Woods" y sus rutas](#alcances-109)
   - [Alcance 1.10 - BACKEND · Agregando productos](#alcances-110)
   - [Alcance 1.11 - BACKEND · Obteniendo los productos por ID](#alcances-111)
-  - [Alcance 1.11 - BACKEND · Obteniendo los productos ordenados por creación y los más vendidos](#alcances-112)
+  - [Alcance 1.12 - BACKEND · Obteniendo los productos ordenados por creación y los más vendidos](#alcances-112)
 
 - [2. Frontend (Authentication)](#iteraciones)
   - [Alcance 2.1 - FRONTEND · Configuración, dependencias y scripts](#alcances-121)
@@ -1215,13 +1215,12 @@ app.post(‘/api/product/article’, auth, admin, (req, res) => {
 ***
 
 
-
+## 1.12 - BACKEND · Obteniendo los productos por ID
 
 
 - Vamos a obtener los productos a través del ID. Creamos la ruta.
 
 Quiero ser capaz de que busque un ID o muchos IDs.querystring
-
 
 Si el type está igualado a array, significa que debe buscar un arreglo de productos. Si tiene “single”, entonces estamos buscando un single id.
 
@@ -1232,12 +1231,12 @@ Si el type está igualado a array, significa que debe buscar un arreglo de produ
 // más de 1 id
 /api/product/article?id=HSKKKSKS,akdjfañjf,kdjfalkñfja&type=dhjfljakhdf
 
-app.get(‘/api/product/articles_by_id’, ( req, res ) => {
+app.get('/api/product/articles_by_id', ( req, res ) => {
     let type = req.query.type
     let items = req.query.id
     
-    if(type === “array”){
-        let ids = req.query.id.split(‘,’)
+    if(type === "array"){
+        let ids = req.query.id.split(',')
         items = []
         items = ids.map(item => { 
             // Convertirlos en ObjectId de Mongoose
@@ -1245,9 +1244,9 @@ app.get(‘/api/product/articles_by_id’, ( req, res ) => {
         })
     }
     Product.
-    find({ ‘_id': {$in:items}})
-    .populate(‘brand’)
-    .populate(‘wood’)
+    find({ '_id': {$in:items}})
+    .populate("brand")
+    .populate("wood")
     .exec((err, docs)=> {
         return res.status(200).send(docs)
     })
@@ -1260,11 +1259,11 @@ app.get(‘/api/product/articles_by_id’, ( req, res ) => {
 
 Lo que regresa es un arreglo de objectos. Cada objeto es un documento.
 
-- Observa que estamos pasando un .populate. Lo que hace es que te permite obtener el desglose de Brand y Wood y no sólo el ObjectId. Con esto ya tenemos una relación mostrada en MongoDB Compass.
+- Observa que estamos pasando un `.populate`. Lo que hace es que te permite obtener el desglose de "Brand" y "Wood" y no sólo el "ObjectId". Con esto ya tenemos una relación mostrada en MongoDB Compass.
 
 ——
 
-## 1.11 - BACKEND · Obteniendo los productos por creados y los más vendidos
+## 1.12 - BACKEND · Obteniendo los productos por creados y los más vendidos
 
 - Creamos una ruta para "products". Observemos que utilizaremos un "query string" para pasarle qué tipo de variable queremos. Si buscamos obtener una lista de productos ordenados por creación o cuáles fueorn las guitarras más vendidas.
 
@@ -1292,6 +1291,8 @@ app.get(‘/api/product/articles’, (req, res) => {
     })
 })
 ```
+
+- Y con esto terminamos el Backend.
 
 ***
 
