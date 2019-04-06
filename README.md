@@ -1002,6 +1002,7 @@ app.get(‘/api/product/brands’, (req, res) => {
 
 - Como último movimiento, vamos a agregar diferentes BRANDS para llenar la base de datos. Crea un JSON en el cual incluyas estas 9 marcas de guitarras:
 
+```javascript
     · Fender
     · Ibanez
     · Charvel    
@@ -1011,6 +1012,7 @@ app.get(‘/api/product/brands’, (req, res) => {
     · Schecter
     · Reverend
     · Ernie ball
+```
     
 Luego, importa ese JSON desde terminal hacia tu base de datos:
 
