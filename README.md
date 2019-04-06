@@ -888,7 +888,7 @@ app.get('/api/user/logout', auth, (req, res) => {
 **`./server/server.js`**
 
 ```javascript
-app.post(‘/api/product/brand’, auth, (req, res) => {
+app.post('/api/product/brand', auth, (req, res) => {
     
 })
 ```
@@ -942,7 +942,7 @@ app.post(‘/api/product/brand’, auth, (req, res) => {
 
 ```javascript
 {
-    “name”: “Ibanez"
+    "name": "Ibanez"
 }
 ```
 
@@ -1015,7 +1015,7 @@ app.get(‘/api/product/brands’, (req, res) => {
 Luego, importa ese JSON desde terminal hacia tu base de datos:
 
 ```shell
-mongoimport --db tiendaguitarras --collection brands --file brands.json --jsonArray 
+$ mongoimport --db tiendaguitarras --collection brands --file brands.json --jsonArray 
 ```
 
 ***
