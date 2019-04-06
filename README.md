@@ -24,7 +24,8 @@
   - [Alcance 1.8 - BACKEND · Creando el modelo "Brand" y sus rutas](#alcances-108)
   - [Alcance 1.9 - BACKEND · Creando el modelo "Woods" y sus rutas](#alcances-109)
   - [Alcance 1.10 - BACKEND · Agregando productos](#alcances-110)
-  - [Alcance 1.11 - BACKEND · Obteniendo los productos por ID y los más vendidos](#alcances-111)
+  - [Alcance 1.11 - BACKEND · Obteniendo los productos por ID](#alcances-111)
+  - [Alcance 1.11 - BACKEND · Obteniendo los productos ordenados por creación y los más vendidos](#alcances-112)
 
 - [2. Frontend (Authentication)](#iteraciones)
   - [Alcance 2.1 - FRONTEND · Configuración, dependencias y scripts](#alcances-121)
@@ -1215,19 +1216,22 @@ app.post(‘/api/product/article’, auth, admin, (req, res) => {
 
 
 
+
+
 - Vamos a obtener los productos a través del ID. Creamos la ruta.
 
 Quiero ser capaz de que busque un ID o muchos IDs.querystring
-
-1 id
-/api/product/article?id=HSKKKSKS&type=array
-más de 1 id
-/api/product/article?id=HSKKKSKS,akdjfañjf,kdjfalkñfja&type=dhjfljakhdf
 
 
 Si el type está igualado a array, significa que debe buscar un arreglo de productos. Si tiene “single”, entonces estamos buscando un single id.
 
 ```javascript
+
+// 1 id
+/api/product/article?id=HSKKKSKS&type=array
+// más de 1 id
+/api/product/article?id=HSKKKSKS,akdjfañjf,kdjfalkñfja&type=dhjfljakhdf
+
 app.get(‘/api/product/articles_by_id’, ( req, res ) => {
     let type = req.query.type
     let items = req.query.id
