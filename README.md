@@ -430,27 +430,6 @@ userSchema.pre('save', async function (next){
 
 ```
 
-**`./server/models/user.js`**
-
-```javascript
-
-userSchema.pre('save', function(next){
-    var user = this
-    if(user.isModified('password')){
-        bcrypt.genSalt(SALT_I, function(err, salt){
-            if(err) return next(err)
-            bcrypt.hash(user.password, salt, function(err, hash){
-                if(err) return next(err)
-                user.password = hash
-                next()
-            })
-        })
-    } else {
-        next()
-    }
-})
-```
-
 - Para revisar que funciona, generemos un usuario nuevo y ahora deberemos ver el password en modo "hash" o mejor dicho, encriptado.
 
 ***
