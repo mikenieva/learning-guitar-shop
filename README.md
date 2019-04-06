@@ -1261,7 +1261,7 @@ Lo que regresa es un arreglo de objectos. Cada objeto es un documento.
 
 - Observa que estamos pasando un `.populate`. Lo que hace es que te permite obtener el desglose de "Brand" y "Wood" y no sólo el "ObjectId". Con esto ya tenemos una relación mostrada en MongoDB Compass.
 
-——
+***
 
 ## 1.12 - BACKEND · Obteniendo los productos por creados y los más vendidos
 
