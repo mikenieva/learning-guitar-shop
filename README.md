@@ -659,7 +659,7 @@ app.post('/api/users/login', (req, res) => {
   
 - Haz una prueba con un password incorrecto para verificar que todo es correcto.
 
-- Finalmente, salvemos la ruta en nuestra carpeta de POSTMAN: `GET Login User`
+- Finalmente, salvemos la ruta en nuestra carpeta de POSTMAN: `POST Login User`
 
 ***
 
