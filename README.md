@@ -885,6 +885,8 @@ app.get('/api/user/logout', auth, (req, res) => {
 
 - La ruta deberá ser en:
 
+**`./server/server.js`**
+
 ```javascript
 app.post(‘/api/product/brand’, auth, (req, res) => {
     
@@ -892,6 +894,8 @@ app.post(‘/api/product/brand’, auth, (req, res) => {
 ```
 
 - Entramos al archivo `models/brand.js` y creamos toda la estructura:
+
+**`./server/models/brand.js`**
 
 ```javascript
 ./server/models/brand.js
@@ -913,6 +917,8 @@ module.exports = { Brand }
 
 - Regresamos a `server.js` para crear la ruta.
 
+**`./server/server.js`**
+
 ```javascript
 const { Brand } = require(‘./models/brand’)
 app.post(‘/api/product/brand’, auth, (req, res) => {
@@ -926,9 +932,11 @@ app.post(‘/api/product/brand’, auth, (req, res) => {
     })
 })
 ```
-- Desde Postman, ahora crearemos una carpeta de GUITARSHOP para USERS y otros para BRANDS.
+- Desde POSTMAN, crearemos una carpeta dentro de GUITARSHOP para BRANDS. 
 
-- Y ahora, creamos una marca.
+- Desde POSTMAN, movemos todas las que habíamos creado anteriormente a una nueva carpeta llamada USERS.
+
+- Y ahora, creamos una marca con POSTMAN. Hacemos una llamada HTTP:
 
 `POST {{URL}}/api/product/brand`
 
@@ -944,16 +952,21 @@ Revisamos y confirmamos que se haya creado.
 
 - Tendremos que crear un middleware que permita saber si es `admin` ese usuario. Agregamos la función `admin` dentro de la ruta. Obsserva que se coloca después de `auth`.
 
+
+**`./server/server.js`**
+
 ```javascript
 app.post(‘/api/product/brand’, auth, admin, (req, res) => …
 ```
 
 - Ahora vamos a ./server/middleware/admin.js
 
+**`./server/middleware/admin.js`**
+
 ```javascript
 let admin = (req, res, next) => {
     if(req.user.role === 0){
-        return res.send(‘You are not an admin')
+        return res.send('No eres un administrador')
     }
     next()
 }
@@ -962,8 +975,10 @@ module.exports = { admin }
 
 - Regresamos a importar el middleware:
 
+**`./server/server.js`**
+
 ```javascript
-const { auth } = require(‘./middleware/admin’)
+const { auth } = require('./middleware/admin')
 ```
 
 - Volvemos a hacer el POST en Postman y nos daremos cuenta que no te va a permitir porque no eres un administrador.
@@ -971,6 +986,8 @@ const { auth } = require(‘./middleware/admin’)
 - Si hacemos el cambio de rol a un usuario, hacemos login con ese mismo y ejecutamos la llamada, entonces sí sucederá. Compruébalo.
 
 - Ahora, obtengamos todas las marcas. Creamos la ruta.
+
+**`./server/server.js`**
 
 ```javascript
 app.get(‘/api/product/brands’, (req, res) => {
