@@ -1215,7 +1215,7 @@ app.post(‘/api/product/article’, auth, admin, (req, res) => {
 ***
 
 
-## 1.12 - BACKEND · Obteniendo los productos por ID
+## 1.11 - BACKEND · Obteniendo los productos por ID
 
 
 - Vamos a obtener los productos a través del ID. Creamos la ruta.
