@@ -24,8 +24,7 @@
   - [Alcance 1.8 - BACKEND · Creando el modelo "Brand" y sus rutas](#alcances-108)
   - [Alcance 1.9 - BACKEND · Creando el modelo "Woods" y sus rutas](#alcances-109)
   - [Alcance 1.10 - BACKEND · Agregando productos](#alcances-110)
-  - [Alcance 1.11 - BACKEND · Obteniendo los productos por ID](#alcances-111)
-  - [Alcance 1.12 - BACKEND · Obteniendo los productos por orden](#alcances-112)
+  - [Alcance 1.11 - BACKEND · Obteniendo los productos por ID y los más vendidos](#alcances-111)
 
 - [2. Frontend (Authentication)](#iteraciones)
   - [Alcance 2.1 - FRONTEND · Configuración, dependencias y scripts](#alcances-121)
@@ -1090,14 +1089,24 @@ app.get(‘/api/product/woods’, (req, res) => {
 
 ***
 
-Adding products
+## 1.10 - BACKEND · Agregando productos
 
 
-- Ahora vamos a crear los productos de la tienda electrónica.
+- Ahora vamos a crear los productos de la tienda electrónica. Básicamente, `products`significarán las guitarras.
 
-- Vamos a crear el modelo product.js
+- Vamos a crear el modelo `product.js`
 
-- Dentro, vamos a crear:
+- Dentro, vamos a crear la estructura. Te pido que mientras generamos el código, observes un par de detalles:
+
+  - Observar que en "Brand", vamos a realizar un concepto llamado relación. El "Product" contendrá el modelo "brand". La razón es porque si llegamos a cambiar datos de "brand" a futuro, no habría problema en "Product" porque los cambios están sucediendo independientemente.
+
+  - Otra cosa a notar es que colocamos en la parte superior "mongoose.Schema".
+
+  - El "ref" significa la colección que nosotros vamos a jalar. El modelo en singular, en "String".
+
+  - Observar que agregamos "Timestamps" para que recuerda su fecha de creación.
+
+**`./server/models/product.js`**
 
 ```javascript
 const mongoose = require(‘mongoose’)
@@ -1161,15 +1170,7 @@ module.exports = { Product }
 
 ```
 
-- Observar que en Brand, vamos a realizar una relación. El producto contiene el Brand. Si llegamos a cambiar el Brand a futuro, no habría problema en Producto porque aceptaría los cambios que sucediesen ahí.
-
-- Otra cosa a notar es que colocamos en la parte superior “mongoose.Schema”.
-
-- El ref significa la colección que nosotros vamos a jalar. El modelo en singular, en String.
-
-- Observar que agregamos "Timestamps" para que recuerda su fecha de creación.
-
-- Regresamos a server.js y creamos la ruta de creación del producto.
+- Regresamos a `server.js` y creamos la ruta de creación del producto.
 
 ```javascript
 const { Product } = require(‘./models/product’)
@@ -1186,33 +1187,33 @@ app.post(‘/api/product/article’, auth, admin, (req, res) => {
 })
 ```
 
-- Revisamos en POSTMAN la url y le pasamos este producto de ejemplo:
+- Revisamos en POSTMAN la url y crearemos un producto de ejemplo. 
 
-* Para el brand y el wood, necesitas pasar el ID que tenemos como brand para relacionarlo.
+  - **DETALLE IMPORTANTE:**  Observa el brand y el wood. Debemos de pasarle el "ObjectId" que tenemos con un documento "brand" para relacionarlo. También con "wood".
 
 {
-    “name”: “A22402”,
-    “description”: “Gran guitarra”,
-    “price”: “2000”,
-    “brand”: “5b2c11d2d37177aedfd6d962”,
-    “shipping”: true,
-    “available”: true,
-    “wood”: “5b2c1264d37177aedfd6d964”,
-    “frets”: 24,
-    “publish”: true
+    "name": "A22402",
+    "description": "Gran guitarra",
+    "price": "2000",
+    "brand": "5b2c11d2d37177aedfd6d962",
+    "shipping": true,
+    "available": true,
+    "wood": "5b2c1264d37177aedfd6d964",
+    "frets": 24,
+    "publish": true
 }
 
-Lo revisamos y debes obtener la respuesta. Observa tambiénq ue ya te aparece createdAt y updatedAt
+- Lo revisamos y debes obtener la respuesta. Observa tambiénq que ya te aparece "createdAt" y "updatedAt"
 
-Y en Brand y Wood te aparece, dentro de MongoDB Compass, “ObjectId(“...")"
+- Y en Brand y Wood te aparece, dentro de MongoDB Compass, “ObjectId(“...")"
 
 - Recuerda salvar tu HTTP Request de Postman.
 
-- Crea 5 productos con esta información:
+- Crea 5 productos, mezclando el brand y el wood.
 
 ***
 
-Getting products by ID
+
 
 - Vamos a obtener los productos a través del ID. Creamos la ruta.
 
@@ -1259,15 +1260,17 @@ Lo que regresa es un arreglo de objectos. Cada objeto es un documento.
 
 ——
 
-Getting product by orders and by arrivals
+## 1.11 - BACKEND · Obteniendo los productos por creados y los más vendidos
 
-- Creamos la ruta
+- Creamos una ruta para "products". Observemos que utilizaremos un "query string" para pasarle qué tipo de variable queremos. Si buscamos obtener una lista de productos ordenados por creación o cuáles fueorn las guitarras más vendidas.
 
 ```javascript
 // BY ARRIVAL (Más nuevas)
 /articles?sortBy=createdAt&order=desc&limit=4
+
 // BY SELL (Más Ventas)
 /articles?sortBy=sold&order=desc&limit=4
+
 app.get(‘/api/product/articles’, (req, res) => {
     let order = req.query.order ? req.query.order : ‘asc’
     let sortBy = req.query.sortBy ? req.query.sortBy : ‘_id’
