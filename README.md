@@ -805,7 +805,7 @@ app.get('/api/users/auth', auth, (req, res) => {
 
 - Vamos a Postman para validar la llamada. Deberías recibir el usuario como tal.
 
-GET  {{url}}/api/users/auth
+`GET  {{url}}/api/users/auth`
 
 ```javascript
 {
