@@ -879,9 +879,10 @@ app.get('/api/user/logout', auth, (req, res) => {
 
 ***
 
-## Modelos de Brand
+## 1.8 - BACKEND · Creando el modelo "Brand" y sus rutas
 
-- Vamos a crear un modelo llamado Brand
+- Vamos a crear un modelo llamado `brand.js`
+
 - La ruta deberá ser en:
 
 ```javascript
@@ -890,7 +891,7 @@ app.post(‘/api/product/brand’, auth, (req, res) => {
 })
 ```
 
-- Vamos a models/brand.js
+- Entramos al archivo `models/brand.js` y creamos toda la estructura:
 
 ```javascript
 ./server/models/brand.js
@@ -910,7 +911,7 @@ const Brand = mongoose.model(‘Brand’, brandSchema)
 module.exports = { Brand }
 ```
 
-- Regresamos a server.js
+- Regresamos a `server.js` para crear la ruta.
 
 ```javascript
 const { Brand } = require(‘./models/brand’)
@@ -925,7 +926,9 @@ app.post(‘/api/product/brand’, auth, (req, res) => {
     })
 })
 ```
-- Desde Postman, creamos una carpeta de GUITARSHOP para USERS y otros para BRANDS.
+- Desde Postman, ahora crearemos una carpeta de GUITARSHOP para USERS y otros para BRANDS.
+
+- Y ahora, creamos una marca.
 
 `POST {{URL}}/api/product/brand`
 
@@ -935,17 +938,17 @@ app.post(‘/api/product/brand’, auth, (req, res) => {
 }
 ```
 
-Revisamos y confirmamos que se pueda crear. Recordar que como estamos haciendo un middleware con auth, es necesario que estemos loggeados para crear un Brand.
+Revisamos y confirmamos que se haya creado. 
 
-- Ahora, podrás notar que, para poder crear Brands, puede hacerlo cualquier usuario. Lo que haremos es permitir sólo a los que tengan rol de admin (role: 1) que puedan subir cambios.
+- Ahora, podrás notar que, para poder crear "Brands", puede hacerlo cualquier usuario, mientras tenga una sesión iniciada. Lo que debemos hacer es permitir **sólo** a los que tengan rol de admin (role: 1) que puedan subir cambios.
 
-- Tendremos que crear un middleware que permitirá saber si es admin ese usuario.
+- Tendremos que crear un middleware que permita saber si es `admin` ese usuario. Agregamos la función `admin` dentro de la ruta. Obsserva que se coloca después de `auth`.
 
 ```javascript
 app.post(‘/api/product/brand’, auth, admin, (req, res) => …
 ```
 
-- Vamos a ./server/middleware/admin.js
+- Ahora vamos a ./server/middleware/admin.js
 
 ```javascript
 let admin = (req, res, next) => {
