@@ -1020,16 +1020,16 @@ $ mongoimport --db tiendaguitarras --collection brands --file brands.json --json
 
 ***
 
-Woods Model and routes
+## 1.9 - BACKEND · Creando el modelo "Woods" y sus rutas
 
-- Creamos la ruta para crear “WOOD"
+- Creamos la ruta para crear “WOOD". El tipo de madera que será la guitarra.
 
 ```javascript
 app.post(‘/api/product/wood’, auth, admin, ( ) => { 
 })
 ```
 
-- Creamos el modelo wood.js
+- Creamos el modelo `wood.js`
 
 ```javascript
 const mongoose = require(‘mongoose’)
@@ -1045,7 +1045,7 @@ const Wood = mongoose.model(‘Wood’, woodSchema, “woods”)
 module.exports = { Wood }
 ```
 
-- Regresamos a nuestra server.js
+- Regresamos a nuestra `server.js`para crear las rutas. Generaremos dos. Una para crear un WOOD y otro para obtener todos los WOODS que tenemos en base de datos.
 
 ```javascript
 const { Wood } = require(‘./models/wood’)
@@ -1070,23 +1070,23 @@ app.get(‘/api/product/woods’, (req, res) => {
 
 ```
 
-- Probamos ambas rutas. Crea 3 woods con estos nombres:
+- Probamos ambas rutas. Y verificamos que funcionen.
+
+- Finalmente, crea 3 woods con estos nombres:
 
 ```javascript
 {
-    “name”: “Alder"
+    "name": "Alder"
 }
-
 {
-    “name”: “Mahogany"
+    "name": "Mahogany"
 }
-
 {
-    “name”: “Basswood"
+    "name": "Basswood"
 }
 ```
 
-- Recuerda guardar tus rutas en las carpetas de POSTMAN
+- Recuerda guardar tus nuevas rutas en las carpetas de POSTMAN.
 
 ***
 
