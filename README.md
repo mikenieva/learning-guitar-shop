@@ -883,11 +883,16 @@ app.get('/api/user/logout', auth, (req, res) => {
 
 - Vamos a crear un modelo llamado Brand
 - La ruta deberá ser en:
+
+```javascript
 app.post(‘/api/product/brand’, auth, (req, res) => {
     
 })
+```
 
 - Vamos a models/brand.js
+
+```javascript
 ./server/models/brand.js
 const mongoose = require(‘mongoose’)
 const brandSchema = mongoose.Schema({
@@ -899,11 +904,15 @@ const brandSchema = mongoose.Schema({
     }
     
 })
+
+
 const Brand = mongoose.model(‘Brand’, brandSchema)
 module.exports = { Brand }
+```
 
 - Regresamos a server.js
 
+```javascript
 const { Brand } = require(‘./models/brand’)
 app.post(‘/api/product/brand’, auth, (req, res) => {
     const brand = new Brand(req.body)
@@ -915,22 +924,30 @@ app.post(‘/api/product/brand’, auth, (req, res) => {
         })
     })
 })
-
-
+```
 - Desde Postman, creamos una carpeta de GUITARSHOP para USERS y otros para BRANDS.
-- POST {{URL}}/api/product/brand
-- content-type — application/json
-Y el raw:
+
+`POST {{URL}}/api/product/brand`
+
+```javascript
 {
     “name”: “Ibanez"
 }
-Revisamos y confirmamos que se pueda crear. Recordar que como estamos haciendo un middleware con auth, es necesario que estemos loggeados para crear un Brand
+```
+
+Revisamos y confirmamos que se pueda crear. Recordar que como estamos haciendo un middleware con auth, es necesario que estemos loggeados para crear un Brand.
+
 - Ahora, podrás notar que, para poder crear Brands, puede hacerlo cualquier usuario. Lo que haremos es permitir sólo a los que tengan rol de admin (role: 1) que puedan subir cambios.
+
 - Tendremos que crear un middleware que permitirá saber si es admin ese usuario.
 
+```javascript
 app.post(‘/api/product/brand’, auth, admin, (req, res) => …
+```
 
 - Vamos a ./server/middleware/admin.js
+
+```javascript
 let admin = (req, res, next) => {
     if(req.user.role === 0){
         return res.send(‘You are not an admin')
@@ -938,23 +955,33 @@ let admin = (req, res, next) => {
     next()
 }
 module.exports = { admin } 
+```
 
 - Regresamos a importar el middleware:
 
+```javascript
 const { auth } = require(‘./middleware/admin’)
-
+```
 
 - Volvemos a hacer el POST en Postman y nos daremos cuenta que no te va a permitir porque no eres un administrador.
+
 - Si hacemos el cambio de rol a un usuario, hacemos login con ese mismo y ejecutamos la llamada, entonces sí sucederá. Compruébalo.
+
 - Ahora, obtengamos todas las marcas. Creamos la ruta.
+
+```javascript
 app.get(‘/api/product/brands’, (req, res) => {
     Brand.find({}, (err, brands) => { 
         if(err) return res.status(400).send(err)
         res.status(200).send(brands)
     })
 })
+```
+
 - Salvemos nuestra llamada HTTP en Postman y la comprobamos.
+
 - Como último movimiento, vamos a agregar diferentes BRANDS para llenar la base de datos. Crea un JSON en el cual incluyas estas 9 marcas de guitarras:
+
     · Fender
     · Ibanez
     · Charvel    
@@ -964,17 +991,27 @@ app.get(‘/api/product/brands’, (req, res) => {
     · Schecter
     · Reverend
     · Ernie ball
+    
 Luego, importa ese JSON desde terminal hacia tu base de datos:
-mongoimport --db tiendaguitarras --collection brands --file brands.json --jsonArray 
 
-—
+```shell
+mongoimport --db tiendaguitarras --collection brands --file brands.json --jsonArray 
+```
+
+***
+
 Woods Model and routes
+
 - Creamos la ruta para crear “WOOD"
 
+```javascript
 app.post(‘/api/product/wood’, auth, admin, ( ) => { 
 })
+```
 
 - Creamos el modelo wood.js
+
+```javascript
 const mongoose = require(‘mongoose’)
 const woodSchema = mongoose.Schema({
     name: {
@@ -986,9 +1023,11 @@ const woodSchema = mongoose.Schema({
 })
 const Wood = mongoose.model(‘Wood’, woodSchema, “woods”)
 module.exports = { Wood }
+```
 
 - Regresamos a nuestra server.js
 
+```javascript
 const { Wood } = require(‘./models/wood’)
 
 app.post(‘/api/product/wood’, auth, admin, (req,res)=>{
@@ -1009,8 +1048,11 @@ app.get(‘/api/product/woods’, (req, res) => {
     }) 
 })
 
+```
+
 - Probamos ambas rutas. Crea 3 woods con estos nombres:
 
+```javascript
 {
     “name”: “Alder"
 }
@@ -1022,12 +1064,22 @@ app.get(‘/api/product/woods’, (req, res) => {
 {
     “name”: “Basswood"
 }
+```
+
 - Recuerda guardar tus rutas en las carpetas de POSTMAN
-——
+
+***
+
 Adding products
+
+
 - Ahora vamos a crear los productos de la tienda electrónica.
+
 - Vamos a crear el modelo product.js
+
 - Dentro, vamos a crear:
+
+```javascript
 const mongoose = require(‘mongoose’)
 const Schema = mongoose.Schema;
 const productSchema = mongoose.Schema({
@@ -1087,13 +1139,19 @@ const productSchema = mongoose.Schema({
 const Product = mongoose.model(“Product”, productSchema, “products”)
 module.exports = { Product }
 
+```
 
 - Observar que en Brand, vamos a realizar una relación. El producto contiene el Brand. Si llegamos a cambiar el Brand a futuro, no habría problema en Producto porque aceptaría los cambios que sucediesen ahí.
+
 - Otra cosa a notar es que colocamos en la parte superior “mongoose.Schema”.
+
 - El ref significa la colección que nosotros vamos a jalar. El modelo en singular, en String.
-- El timestamps
+
+- Observar que agregamos "Timestamps" para que recuerda su fecha de creación.
 
 - Regresamos a server.js y creamos la ruta de creación del producto.
+
+```javascript
 const { Product } = require(‘./models/product’)
 app.post(‘/api/product/article’, auth, admin, (req, res) => {
         const product = new Product(req.body)
@@ -1106,8 +1164,12 @@ app.post(‘/api/product/article’, auth, admin, (req, res) => {
             })
     })
 })
+```
+
 - Revisamos en POSTMAN la url y le pasamos este producto de ejemplo:
+
 * Para el brand y el wood, necesitas pasar el ID que tenemos como brand para relacionarlo.
+
 {
     “name”: “A22402”,
     “description”: “Gran guitarra”,
@@ -1119,20 +1181,32 @@ app.post(‘/api/product/article’, auth, admin, (req, res) => {
     “frets”: 24,
     “publish”: true
 }
+
 Lo revisamos y debes obtener la respuesta. Observa tambiénq ue ya te aparece createdAt y updatedAt
+
 Y en Brand y Wood te aparece, dentro de MongoDB Compass, “ObjectId(“...")"
+
 - Recuerda salvar tu HTTP Request de Postman.
+
 - Crea 5 productos con esta información:
 
-——
+***
+
 Getting products by ID
-- Vamos a obtener los productos a través del ID. Creamos la ruta
+
+- Vamos a obtener los productos a través del ID. Creamos la ruta.
+
 Quiero ser capaz de que busque un ID o muchos IDs.querystring
+
 1 id
 /api/product/article?id=HSKKKSKS&type=array
 más de 1 id
 /api/product/article?id=HSKKKSKS,akdjfañjf,kdjfalkñfja&type=dhjfljakhdf
+
+
 Si el type está igualado a array, significa que debe buscar un arreglo de productos. Si tiene “single”, entonces estamos buscando un single id.
+
+```javascript
 app.get(‘/api/product/articles_by_id’, ( req, res ) => {
     let type = req.query.type
     let items = req.query.id
@@ -1153,14 +1227,23 @@ app.get(‘/api/product/articles_by_id’, ( req, res ) => {
         return res.status(200).send(docs)
     })
 })
+```
 
 - Vamos a Postman para probar la ruta. Recuerda pasar:
-{{url}}/api/product/articles_by_id?id=2345678,761372893,y1232131&type=array
+
+`{{url}}/api/product/articles_by_id?id=2345678,761372893,y1232131&type=array`
+
 Lo que regresa es un arreglo de objectos. Cada objeto es un documento.
+
 - Observa que estamos pasando un .populate. Lo que hace es que te permite obtener el desglose de Brand y Wood y no sólo el ObjectId. Con esto ya tenemos una relación mostrada en MongoDB Compass.
+
 ——
+
 Getting product by orders and by arrivals
+
 - Creamos la ruta
+
+```javascript
 // BY ARRIVAL (Más nuevas)
 /articles?sortBy=createdAt&order=desc&limit=4
 // BY SELL (Más Ventas)
@@ -1181,13 +1264,7 @@ app.get(‘/api/product/articles’, (req, res) => {
         res.send(articles)
     })
 })
-
-
-
-
-
-
-
+```
 
 ***
 
