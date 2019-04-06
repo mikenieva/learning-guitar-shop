@@ -132,7 +132,7 @@ yarn-error.log*
 - [nodemon](https://www.npmjs.com/package/nodemon) - Herramienta para monitorear cambios en una aplicación y reiniciarla cada vez que suceda uno.
 - [bcrypt](https://www.npmjs.com/package/bcrypt) - Encriptación de contraseñas.
 - [cloudinary](https://www.npmjs.com/package/cloudinary) - Subir imágenes a plataforma de [Cloudinary](https://cloudinary.com/).
-- [concurrently]https://www.npmjs.com/package/concurrently() - Levanta varias sesiones de Node.js en un sólo comando.
+- [concurrently](https://www.npmjs.com/package/concurrently) - Levanta varias sesiones de Node.js en un sólo comando.
 - [cookie-parser](https://www.npmjs.com/package/cookie-parser) - Mantener la sesión del usuario sobre el navegador (lado del cliente).
 - [dotenv](https://www.npmjs.com/package/dotenv) - Archivo que mantiene tus datos sensibles, almacenados en `.env`, en la raiz de tu proyecto.
 - [express](https://www.npmjs.com/package/express) - Framework Web para crear nuestro Backend y sus derivados.
